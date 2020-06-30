@@ -57,7 +57,7 @@ public class DnDCharacterCreator
 			RACES[7][0] = "8) ";
 			RACES[7][1] = "Human";
 		
-		String characterName = "Sydri";
+		String characterName;
 		String characterRace = "Human";
 		String characterClass = "Artificer";
 		int characterLevel = 1;
@@ -69,6 +69,14 @@ public class DnDCharacterCreator
 		int speed = 30;
 		int proficiencyBonus = 2;
 		int initiativeModifier;
+		
+		
+		
+		
+		
+		System.out.println("Enter character name:");
+		characterName = input.nextLine();
+		System.out.println();
 		
 		
 		
