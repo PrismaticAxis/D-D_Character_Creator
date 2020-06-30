@@ -117,12 +117,12 @@ public class DnDCharacterCreator
 		
 		//generate ability scores
 		int[] scores = setAbilityScores();
-		int strScore = scores[0] + 1;
-		int dexScore = scores[1] + 1;
-		int conScore = scores[2] + 1;
-		int intScore = scores[3] + 1;
-		int wisScore = scores[4] + 1;
-		int chaScore = scores[5] + 1;
+		int strScore = scores[0];
+		int dexScore = scores[1];
+		int conScore = scores[2];
+		int intScore = scores[3];
+		int wisScore = scores[4];
+		int chaScore = scores[5];
 		
 		int strModifier = getModifier(strScore);
 		int dexModifier = getModifier(dexScore);
@@ -184,6 +184,7 @@ public class DnDCharacterCreator
 			}
 			else if (raceChoice == 8)	//Human
 			{
+				//race, speed, languages
 				characterRace = "Human";
 				speed = 30;
 				System.out.println(
@@ -192,6 +193,14 @@ public class DnDCharacterCreator
 				languagesCount++;
 				languages[languagesCount] = addLanguage(LANGUAGES);
 				languagesCount++;
+				
+				//ability score increase
+				strScore++;
+				dexScore++;
+				conScore++;
+				intScore++;
+				wisScore++;
+				chaScore++;
 				break;
 			}
 			else						//invalid input
