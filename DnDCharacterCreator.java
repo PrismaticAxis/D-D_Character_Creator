@@ -90,6 +90,25 @@ public class DnDCharacterCreator
 			LANGUAGES[14][1] = "Sylvan";
 			LANGUAGES[15][0] = "16) ";
 			LANGUAGES[15][1] = "Undercommon";
+		final String[][] WIZARD_SPELLS_0 = new String[16][2];
+			for (int i = 0; i < WIZARD_SPELLS_0.length; i++)
+				WIZARD_SPELLS_0[i][0] = (i + 1) + ") ";
+			WIZARD_SPELLS_0[0][1] = "Acid Splash";
+			WIZARD_SPELLS_0[1][1] = "Blade Ward";
+			WIZARD_SPELLS_0[2][1] = "Chill Touch";
+			WIZARD_SPELLS_0[3][1] = "Dancing Lights";
+			WIZARD_SPELLS_0[4][1] = "Fire Bolt";
+			WIZARD_SPELLS_0[5][1] = "Friends";
+			WIZARD_SPELLS_0[6][1] = "Light";
+			WIZARD_SPELLS_0[7][1] = "Mage Hand";
+			WIZARD_SPELLS_0[8][1] = "Mending";
+			WIZARD_SPELLS_0[9][1] = "Message";
+			WIZARD_SPELLS_0[10][1] = "Minor Illusion";
+			WIZARD_SPELLS_0[11][1] = "Poison Spray";
+			WIZARD_SPELLS_0[12][1] = "Prestidigitation";
+			WIZARD_SPELLS_0[13][1] = "Ray of Frost";
+			WIZARD_SPELLS_0[14][1] = "Shocking Grasp";
+			WIZARD_SPELLS_0[15][1] = "True Strike";
 		
 		String characterName = "";
 		String characterRace = "";
@@ -174,7 +193,6 @@ public class DnDCharacterCreator
 		
 		boolean[] skillProficiencies = new boolean[18];
 			skillProficiencies[5] = true;
-			skillProficiencies[11] = true;
 			skillProficiencies[13] = true;
 			skillProficiencies[15] = true;
 			
@@ -336,16 +354,130 @@ public class DnDCharacterCreator
 			}
 			else if (raceChoice == 3)	//High Elf
 			{
+				//race, speed, languages
+				characterRace = "High Elf";
+				speed = 30;
+				System.out.println(
+						"As a high elf, you know Common, Elvish, and one other language.");
+				languages[languagesCount] = "Common";
+				languagesCount++;
+				languages[languagesCount] = "Elvish";
+				languagesCount++;
+				languages[languagesCount] = pickFromList(LANGUAGES, "language");
+				languagesCount++;
+				
+				//ability score increase
+				dexScore += 2;
+				intScore++;
+				
+				//wizard cantrip
+				System.out.println("You also get a wizard cantrip (Intelligence is your spellcasting ability for it)");
+				isCaster = true;
+				spellList[0][spellCount[0]] = pickFromList(WIZARD_SPELLS_0, "cantrip");
+				spellCount[0]++;
+				
+				//misc traits
+				features[featureCount] = "Darkvision (60 ft)";
+				featureCount++;
+				features[featureCount] = "Fey Ancestry";
+				featureCount++;
+				features[featureCount] = "Trance";
+				featureCount++;
+				
+				//misc proficiencies
+				skillProficiencies[11] = true;
+				weaponProficiency[weaponProficiencyCount] = "Longsword";
+				weaponProficiencyCount++;
+				weaponProficiency[weaponProficiencyCount] = "Shortsword";
+				weaponProficiencyCount++;
+				weaponProficiency[weaponProficiencyCount] = "Shortbow";
+				weaponProficiencyCount++;
+				weaponProficiency[weaponProficiencyCount] = "Longbow";
+				weaponProficiencyCount++;
 				
 				break;
 			}
 			else if (raceChoice == 4)	//Wood Elf
 			{
+				//race, speed, languages
+				characterRace = "Wood Elf";
+				speed = 35;
+				languages[languagesCount] = "Common";
+				languagesCount++;
+				languages[languagesCount] = "Elvish";
+				languagesCount++;
+				
+				//ability score increase
+				dexScore += 2;
+				wisScore++;
+				
+				//misc traits
+				features[featureCount] = "Darkvision (60 ft)";
+				featureCount++;
+				features[featureCount] = "Fey Ancestry";
+				featureCount++;
+				features[featureCount] = "Trance";
+				featureCount++;
+				features[featureCount] = "Mask of the Wild";
+				featureCount++;
+				
+				//misc proficiencies
+				skillProficiencies[11] = true;
+				weaponProficiency[weaponProficiencyCount] = "Longsword";
+				weaponProficiencyCount++;
+				weaponProficiency[weaponProficiencyCount] = "Shortsword";
+				weaponProficiencyCount++;
+				weaponProficiency[weaponProficiencyCount] = "Shortbow";
+				weaponProficiencyCount++;
+				weaponProficiency[weaponProficiencyCount] = "Longbow";
+				weaponProficiencyCount++;
 				
 				break;
 			}
 			else if (raceChoice == 5)	//Drow
 			{
+				//race, speed, languages
+				characterRace = "Drow";
+				speed = 30;
+				languages[languagesCount] = "Common";
+				languagesCount++;
+				languages[languagesCount] = "Elvish";
+				languagesCount++;
+											//still not sure why drow don't
+											//get Undercommon
+				
+				//ability score increase
+				dexScore += 2;
+				chaScore++;
+				
+				//misc traits
+				features[featureCount] = "Darkvision (120 ft)";
+				featureCount++;
+				features[featureCount] = "Sunlight Sensitivity";
+				featureCount++;
+				features[featureCount] = "Fey Ancestry";
+				featureCount++;
+				features[featureCount] = "Trance";
+				featureCount++;
+				
+				//misc proficiencies
+				skillProficiencies[11] = true;
+				weaponProficiency[weaponProficiencyCount] = "Rapier";
+				weaponProficiencyCount++;
+				weaponProficiency[weaponProficiencyCount] = "Shortsword";
+				weaponProficiencyCount++;
+				weaponProficiency[weaponProficiencyCount] = "Hand Crossbow";
+				weaponProficiencyCount++;
+				
+				//drow magic
+				isCaster = true;
+				spellList[0][spellCount[0]] = "Dancing Lights";
+				spellCount[0]++;
+				/*
+				 * there is more to this trait, but only comes into
+				 * effect at higher levels; beyond the scope of the
+				 * current project
+				 */
 				
 				break;
 			}
@@ -368,7 +500,7 @@ public class DnDCharacterCreator
 						"As a human, you know Common and one other language.");
 				languages[languagesCount] = "Common";
 				languagesCount++;
-				languages[languagesCount] = addLanguage(LANGUAGES);
+				languages[languagesCount] = pickFromList(LANGUAGES, "language");
 				languagesCount++;
 				
 				//ability score increase
@@ -378,6 +510,7 @@ public class DnDCharacterCreator
 				intScore++;
 				wisScore++;
 				chaScore++;
+				
 				break;
 			}
 			else						//invalid input
@@ -390,10 +523,10 @@ public class DnDCharacterCreator
 		
 				
 				
-				
-				
+
+		
 		//print character sheet
-				
+		System.out.println();
 		//name, race, class, level, and background
 		System.out.println(characterName);
 		System.out.println(characterRace + " " + characterClass + " "
@@ -698,6 +831,7 @@ public class DnDCharacterCreator
 		return scores;
 	}
 	
+	/*
 	public static String addLanguage(String[][] languages)
 	{
 		Scanner input = new Scanner(System.in);
@@ -721,6 +855,7 @@ public class DnDCharacterCreator
 			}
 		}
 	}
+	*/
 	
 	public static String setArmorProficiency(char a)
 	{
@@ -735,4 +870,29 @@ public class DnDCharacterCreator
 		else
 			return "";
 	}
+	
+	public static String pickFromList(String[][] list, String prompt)
+	{
+		Scanner input = new Scanner(System.in);
+		
+		while (true)
+		{
+			System.out.println();
+			for (int i = 0; i < list.length; i++)
+			{
+				System.out.println(list[i][0] + list [i][1]);
+			}
+			System.out.println();
+			System.out.println("\nChoose a " + prompt + ":");
+			int choice = input.nextInt();
+			if (choice >= 0 && choice <= list.length)
+				return list[choice - 1][1];
+			else
+			{
+				System.out.println("Invalid input.\n");
+				continue;
+			}
+		}
+	}
+	
 }
