@@ -4,6 +4,8 @@ public class DnDCharacterCreator
 {
 	public static void main(String[] args)
 	{
+		Scanner input = new Scanner(System.in);
+		
 		String sectionBreak = "_____\n";
 		final String[] ORDINAL = {"1st", "2nd", "3rd", "4th", "5th",
 				"6th", "7th", "8th", "9th"};
@@ -37,6 +39,24 @@ public class DnDCharacterCreator
 		final int[] SKILL_ABILITIES = {2, 5, 4, 1, 6, 4, 5, 6, 4,
 				5, 4, 5, 6, 6, 4, 2, 2, 5};
 		
+		final String[][] RACES = new String[20][2];
+			RACES[0][0] = "1) ";
+			RACES[0][1] = "Hill Dwarf";
+			RACES[1][0] = "2) ";
+			RACES[1][1] = "Mountain Dwarf";
+			RACES[2][0] = "3) ";
+			RACES[2][1] = "High Elf";
+			RACES[3][0] = "4) ";
+			RACES[3][1] = "Wood Elf";
+			RACES[4][0] = "5) ";
+			RACES[4][1] = "Dark Elf (Drow)";
+			RACES[5][0] = "6) ";
+			RACES[5][1] = "Lightfoot Halfling";
+			RACES[6][0] = "7) ";
+			RACES[6][1] = "Stout Halfling";
+			RACES[7][0] = "8) ";
+			RACES[7][1] = "Human";
+		
 		String characterName = "Sydri";
 		String characterRace = "Human";
 		String characterClass = "Artificer";
@@ -46,9 +66,14 @@ public class DnDCharacterCreator
 		int ac = 12;
 		int hpCurrent = 8;
 		int hpMax = 8;
+		int speed = 30;
 		int proficiencyBonus = 2;
 		int initiativeModifier;
 		
+		
+		
+		
+		//generate ability scores
 		int[] scores = setAbilityScores();
 		int strScore = scores[0] + 1;
 		int dexScore = scores[1] + 1;
@@ -63,6 +88,16 @@ public class DnDCharacterCreator
 		int intModifier = getModifier(intScore);
 		int wisModifier = getModifier(wisScore);
 		int chaModifier = getModifier(chaScore);
+		
+		
+		
+		
+		
+		
+		
+
+			
+		
 		
 		int saveProficiencyCount = 0;
 		String[] saveProficiency = new String[6];
@@ -126,7 +161,9 @@ public class DnDCharacterCreator
 				
 				
 				
-		
+				
+		//print character sheet
+				
 		//name, race, class, level, and background
 		System.out.println(characterName);
 		System.out.println(characterRace + " " + characterClass + " "
@@ -139,6 +176,7 @@ public class DnDCharacterCreator
 		System.out.printf("HP\t%2d / %d\n", hpCurrent, hpMax);
 		System.out.println("Proficiency Bonus: +" + proficiencyBonus);
 		System.out.println("Initiative: +2");
+		System.out.println("Speed\t" + speed + " ft");
 		System.out.println(sectionBreak);
 		
 		//ability scores and modifiers, with saving throw proficiencies
@@ -310,6 +348,10 @@ public class DnDCharacterCreator
 		}
 	}
 	
+	/*
+	 * set ability scores; currently only supports standard array
+	 * of scores (15, 14, 13, 12, 10, 8)
+	 */
 	public static int[] setAbilityScores()
 	{
 		Scanner input = new Scanner(System.in);
@@ -322,13 +364,6 @@ public class DnDCharacterCreator
 		
 		for (int j = 0; j < 6; j++)
 		{
-			/*
-			for (int i = 0; i < 6; i++)
-			{
-				System.out.printf("%s %12s\t%2d\n", (i + 1) + ")",
-						scoreNames[i], scores[i]);
-			}
-			*/
 			for (int i = 0; i < 3; i++)
 			{
 				System.out.printf("%s %12s\t%2d\t", (i + 1) + ")",
@@ -337,7 +372,8 @@ public class DnDCharacterCreator
 						scoreNames[i + 3], scores[i + 3]);
 			}
 			System.out.println("\nStandard array: 15, 14, 13, 12, 10,  8");
-			System.out.println("Choose score to receive " + standard[j]);
+			System.out.println("Choose score to receive " + standard[j]
+					+ " (i.e., \"Intelligence,\" \"int,\" or \"4\")");
 			String choice = input.next();
 			
 			if (choice.equalsIgnoreCase("strength")
@@ -418,6 +454,13 @@ public class DnDCharacterCreator
 					continue;
 				}	
 			}
+			else
+			{
+				System.out.println("Invalid input");
+				j--;
+				continue;
+			}
+			System.out.println();
 		}
 		
 
