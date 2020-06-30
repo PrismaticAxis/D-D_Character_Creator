@@ -93,18 +93,10 @@ public class DnDCharacterCreator
 		
 		
 		
-		//choose race
-		for (int i = 0; i < RACES.length; i++)
-		{
-			if (RACES[i][0] != null)
-				System.out.println(RACES[i][0] + RACES[i][1]);
-			else
-				break;
-		}
-		System.out.println("\nSelect race:");
-		int raceChoice = input.nextInt();
 		
 		
+
+			
 		
 		
 		int saveProficiencyCount = 0;
@@ -460,6 +452,12 @@ public class DnDCharacterCreator
 					j--;
 					continue;
 				}	
+			}
+			else
+			{
+				System.out.println("Invalid input");
+				j--;
+				continue;
 			}
 			System.out.println();
 		}
