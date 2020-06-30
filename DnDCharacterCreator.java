@@ -7,6 +7,14 @@ public class DnDCharacterCreator
 		String sectionBreak = "_____\n";
 		final String[] ORDINAL = {"1st", "2nd", "3rd", "4th", "5th",
 				"6th", "7th", "8th", "9th"};
+		final String[] SCORE_NAMES = {
+				"Strength     ",
+				"Dexterity    ",
+				"Constitution ",
+				"Intelligence ",
+				"Wisdom       ",
+				"Charisma     "};
+		
 		final String[] SKILLS = {
 				"Acrobatics",
 				"Animal Handling",
@@ -41,12 +49,13 @@ public class DnDCharacterCreator
 		int proficiencyBonus = 2;
 		int initiativeModifier;
 		
-		int strScore = 13;
-		int dexScore = 14;
-		int conScore = 11;
-		int intScore = 16;		//awkward-looking variable name
-		int wisScore = 15;
-		int chaScore =  9;
+		int[] scores = setAbilityScores();
+		int strScore = scores[0] + 1;
+		int dexScore = scores[1] + 1;
+		int conScore = scores[2] + 1;
+		int intScore = scores[3] + 1;
+		int wisScore = scores[4] + 1;
+		int chaScore = scores[5] + 1;
 		
 		int strModifier = getModifier(strScore);
 		int dexModifier = getModifier(dexScore);
@@ -54,6 +63,13 @@ public class DnDCharacterCreator
 		int intModifier = getModifier(intScore);
 		int wisModifier = getModifier(wisScore);
 		int chaModifier = getModifier(chaScore);
+		
+		int saveProficiencyCount = 0;
+		String[] saveProficiency = new String[6];
+			saveProficiency[saveProficiencyCount] = "Constitution";
+			saveProficiencyCount++;
+			saveProficiency[saveProficiencyCount] = "Intelligence";
+			saveProficiencyCount++;
 		
 		boolean[] skillProficiencies = new boolean[18];
 			skillProficiencies[5] = true;
@@ -107,7 +123,9 @@ public class DnDCharacterCreator
 				spellList[1][spellCount[1]] = "Purify Food and Drink";
 				spellCount[1]++;
 		
-		Scanner input = new Scanner(System.in);
+				
+				
+				
 		
 		//name, race, class, level, and background
 		System.out.println(characterName);
@@ -129,9 +147,9 @@ public class DnDCharacterCreator
 		System.out.printf("DEX %2d (%2s)%s\n", dexScore,
 				modifierToString(dexModifier), "");
 		System.out.printf("CON %2d (%2s)%s\n", conScore,
-				modifierToString(conModifier), " (save +2)");
+				modifierToString(conModifier), "");
 		System.out.printf("INT %2d (%2s)%s\n", intScore,
-				modifierToString(intModifier), " (save +5)");
+				modifierToString(intModifier), "");
 		System.out.printf("WIS %2d (%2s)%s\n", wisScore,
 				modifierToString(wisModifier), "");
 		System.out.printf("CHA %2d (%2s)%s\n", chaScore,
@@ -139,8 +157,18 @@ public class DnDCharacterCreator
 		System.out.println(sectionBreak);
 		
 		//proficiencies
-			//skills
 		System.out.println("\tProficiencies\n");
+			//saving throws
+		for (int i = 0; i < saveProficiency.length; i++)
+		{
+			if (saveProficiency[i] != null)
+				System.out.println(saveProficiency[i] + " saving throws");
+			else
+				break;
+		}
+		System.out.println();
+		
+			//skills
 		for (int i = 0; i < skillProficiencies.length; i++)
 		{
 			if (skillProficiencies[i])
@@ -280,6 +308,120 @@ public class DnDCharacterCreator
 			else
 				return;
 		}
+	}
+	
+	public static int[] setAbilityScores()
+	{
+		Scanner input = new Scanner(System.in);
+		
+		String[] scoreNames = {"Strength", "Dexterity", "Constitution",
+				"Intelligence", "Wisdom", "Charisma"};
+		
+		int[] scores = new int[6];
+		int[] standard = {15, 14, 13, 12, 10, 8};
+		
+		for (int j = 0; j < 6; j++)
+		{
+			/*
+			for (int i = 0; i < 6; i++)
+			{
+				System.out.printf("%s %12s\t%2d\n", (i + 1) + ")",
+						scoreNames[i], scores[i]);
+			}
+			*/
+			for (int i = 0; i < 3; i++)
+			{
+				System.out.printf("%s %12s\t%2d\t", (i + 1) + ")",
+						scoreNames[i], scores[i]);
+				System.out.printf("%s %12s\t%2d\n", (i + 4) + ")",
+						scoreNames[i + 3], scores[i + 3]);
+			}
+			System.out.println("\nStandard array: 15, 14, 13, 12, 10,  8");
+			System.out.println("Choose score to receive " + standard[j]);
+			String choice = input.next();
+			
+			if (choice.equalsIgnoreCase("strength")
+					|| choice.equalsIgnoreCase("str")
+					|| choice.equals("1"))
+			{
+				if (scores[0] == 0)
+					scores[0] = standard[j];
+				else
+				{
+					System.out.println("Invalid input");
+					j--;
+					continue;
+				}	
+			}
+			else if (choice.equalsIgnoreCase("dexterity")
+					|| choice.equalsIgnoreCase("dex")
+					|| choice.equals("2"))
+			{
+				if (scores[1] == 0)
+					scores[1] = standard[j];
+				else
+				{
+					System.out.println("Invalid input");
+					j--;
+					continue;
+				}	
+			}
+			else if (choice.equalsIgnoreCase("constitution")
+					|| choice.equalsIgnoreCase("con")
+					|| choice.equals("3"))
+			{
+				if (scores[2] == 0)
+					scores[2] = standard[j];
+				else
+				{
+					System.out.println("Invalid input");
+					j--;
+					continue;
+				}	
+			}
+			else if (choice.equalsIgnoreCase("intelligence")
+					|| choice.equalsIgnoreCase("int")
+					|| choice.equals("4"))
+			{
+				if (scores[3] == 0)
+					scores[3] = standard[j];
+				else
+				{
+					System.out.println("Invalid input");
+					j--;
+					continue;
+				}	
+			}
+			else if (choice.equalsIgnoreCase("wisdom")
+					|| choice.equalsIgnoreCase("wis")
+					|| choice.equals("5"))
+			{
+				if (scores[4] == 0)
+					scores[4] = standard[j];
+				else
+				{
+					System.out.println("Invalid input");
+					j--;
+					continue;
+				}	
+			}
+			else if (choice.equalsIgnoreCase("charisma")
+					|| choice.equalsIgnoreCase("cha")
+					|| choice.equals("6"))
+			{
+				if (scores[5] == 0)
+					scores[5] = standard[j];
+				else
+				{
+					System.out.println("Invalid input");
+					j--;
+					continue;
+				}	
+			}
+		}
+		
+
+		return scores;
 	}
 	
 }
