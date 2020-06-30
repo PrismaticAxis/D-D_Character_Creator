@@ -105,14 +105,9 @@ public class DnDCharacterCreator
 		int initiativeModifier;
 		
 		
-		
-		
-		
 		System.out.println("Enter character name:");
 		characterName = input.nextLine();
 		System.out.println();
-		
-		
 		
 		
 		//generate ability scores
@@ -134,7 +129,57 @@ public class DnDCharacterCreator
 		int languagesCount = 0;
 		String[] languages = new String[10];
 		
+		String armorProficiency = "";
+		int weaponProficiencyCount = 0;
+		String[] weaponProficiency = new String[20];
+		int toolProficiencyCount = 0;
+		String[] toolProficiency = new String[10];
+			toolProficiency[toolProficiencyCount] = "Thieves' Tools";
+			toolProficiencyCount++;
+			toolProficiency[toolProficiencyCount] = "Tinker's Tools";
+			toolProficiencyCount++;
+			toolProficiency[toolProficiencyCount] = "Painter's Supplies";
+			toolProficiencyCount++;
+			toolProficiency[toolProficiencyCount] = "Chess Set";
+			toolProficiencyCount++;
+		int featureCount = 0;
+		String[] features = new String[20];
+			
+			
+		boolean isCaster = true;
+		int[] spellSlots = new int[10];
+			spellSlots[1] = 2;
+			spellSlots[9] = 1;
+		int[] spellCount = new int[10];
+		String[][] spellList = new String[10][15];
+			//add cantrips
+			spellList[0][spellCount[0]] = "Guidance";
+			spellCount[0]++;
+			spellList[0][spellCount[0]] = "Prestidigitation";
+			spellCount[0]++;
+			//add 1st level spells
+			spellList[1][spellCount[1]] = "Feather Fall";
+			spellCount[1]++;
+			spellList[1][spellCount[1]] = "Jump";
+			spellCount[1]++;
+			spellList[1][spellCount[1]] = "Purify Food and Drink";
+			spellCount[1]++;
+			
+		int saveProficiencyCount = 0;
+		String[] saveProficiency = new String[6];
+			saveProficiency[saveProficiencyCount] = "Constitution";
+			saveProficiencyCount++;
+			saveProficiency[saveProficiencyCount] = "Intelligence";
+			saveProficiencyCount++;
 		
+		boolean[] skillProficiencies = new boolean[18];
+			skillProficiencies[5] = true;
+			skillProficiencies[11] = true;
+			skillProficiencies[13] = true;
+			skillProficiencies[15] = true;
+			
+			
+			
 		
 		//choose race
 		while (true)
@@ -148,14 +193,146 @@ public class DnDCharacterCreator
 			}
 			System.out.println("\nSelect race:");
 			int raceChoice = input.nextInt();
+			
 			if (raceChoice == 1)	//Hill Dwarf
 			{
+				//race, speed, languages
+				characterRace = "Hill Dwarf";
+				speed = 25;
+				languages[languagesCount] = "Common";
+				languagesCount++;
+				languages[languagesCount] = "Dwarvish";
+				languagesCount++;
+				
+				//ability score increase
+				conScore += 2;
+				wisScore++;
+				
+				//misc traits
+				features[featureCount] = "Darkvision (60 ft)";
+				featureCount++;
+				features[featureCount] = "Dwarven Resilience";
+				featureCount++;
+				features[featureCount] = "Stonecunning";
+				featureCount++;
+				features[featureCount] = "Dwarven Toughness";
+				featureCount++;
+				
+				//misc proficiencies
+				weaponProficiency[weaponProficiencyCount] = "Battleaxe";
+				weaponProficiencyCount++;
+				weaponProficiency[weaponProficiencyCount] = "Handaxe";
+				weaponProficiencyCount++;
+				weaponProficiency[weaponProficiencyCount] = "Light Hammer";
+				weaponProficiencyCount++;
+				weaponProficiency[weaponProficiencyCount] = "Warhammer";
+				weaponProficiencyCount++;
+				
+				while (true)
+				{
+					System.out.println("1) Smith's Tools");
+					System.out.println("2) Brewer's Supplies");
+					System.out.println("3) Mason's Tools");
+					System.out.println();
+					System.out.println("Choose a tool proficiency:");
+					int choice = input.nextInt();
+					if (choice == 1)
+					{
+						toolProficiency[toolProficiencyCount] = "Smith's Tools";
+						toolProficiencyCount++;
+						break;
+					}
+					else if (choice == 2)
+					{
+						toolProficiency[toolProficiencyCount] = "Brewer's Supplies";
+						toolProficiencyCount++;
+						break;
+					}
+					else if (choice == 3)
+					{
+						toolProficiency[toolProficiencyCount] = "Mason's Tools";
+						toolProficiencyCount++;
+						break;
+					}
+					else
+					{
+						System.out.println("Invalid input\n");
+						continue;
+					}
+						
+					
+				}
 				
 				break;
 			}
 			else if (raceChoice == 2)	//Mountain Dwarf
 			{
+				//race, speed, languages
+				characterRace = "Hill Dwarf";
+				speed = 25;
+				languages[languagesCount] = "Common";
+				languagesCount++;
+				languages[languagesCount] = "Dwarvish";
+				languagesCount++;
 				
+				//ability score increase
+				conScore += 2;
+				strScore += 2;
+				
+				//misc traits
+				features[featureCount] = "Darkvision (60 ft)";
+				featureCount++;
+				features[featureCount] = "Dwarven Resilience";
+				featureCount++;
+				features[featureCount] = "Stonecunning";
+				featureCount++;
+				
+				//misc proficiencies
+				armorProficiency = setArmorProficiency('d');
+				weaponProficiency[weaponProficiencyCount] = "Battleaxe";
+				weaponProficiencyCount++;
+				weaponProficiency[weaponProficiencyCount] = "Handaxe";
+				weaponProficiencyCount++;
+				weaponProficiency[weaponProficiencyCount] = "Light Hammer";
+				weaponProficiencyCount++;
+				weaponProficiency[weaponProficiencyCount] = "Warhammer";
+				weaponProficiencyCount++;
+				while (true)
+				{
+					System.out.println("1) Smith's Tools");
+					System.out.println("2) Brewer's Supplies");
+					System.out.println("3) Mason's Tools");
+					System.out.println();
+					System.out.println("Choose a tool proficiency:");
+					int choice = input.nextInt();
+					if (choice == 1)
+					{
+						toolProficiency[toolProficiencyCount] = "Smith's Tools";
+						toolProficiencyCount++;
+						break;
+					}
+					else if (choice == 2)
+					{
+						toolProficiency[toolProficiencyCount] = "Brewer's Supplies";
+						toolProficiencyCount++;
+						break;
+					}
+					else if (choice == 3)
+					{
+						toolProficiency[toolProficiencyCount] = "Mason's Tools";
+						toolProficiencyCount++;
+						break;
+					}
+					else
+					{
+						System.out.println("Invalid input\n");
+						continue;
+					}
+						
+					
+				}
+				
+				break;
 			}
 			else if (raceChoice == 3)	//High Elf
 			{
@@ -210,60 +387,6 @@ public class DnDCharacterCreator
 			}
 		}
 		
-
-			
-		
-		
-		int saveProficiencyCount = 0;
-		String[] saveProficiency = new String[6];
-			saveProficiency[saveProficiencyCount] = "Constitution";
-			saveProficiencyCount++;
-			saveProficiency[saveProficiencyCount] = "Intelligence";
-			saveProficiencyCount++;
-		
-		boolean[] skillProficiencies = new boolean[18];
-			skillProficiencies[5] = true;
-			skillProficiencies[11] = true;
-			skillProficiencies[13] = true;
-			skillProficiencies[15] = true;
-		
-		String armorProficiency = "Light, Medium Armor";
-		int weaponProficiencyCount = 0;
-		String[] weaponProficiency = new String[20];
-			weaponProficiency[weaponProficiencyCount] = "Simple Weapons";
-			weaponProficiencyCount++;
-		int toolProficiencyCount = 0;
-		String[] toolProficiency = new String[10];
-			toolProficiency[toolProficiencyCount] = "Thieves' Tools";
-			toolProficiencyCount++;
-			toolProficiency[toolProficiencyCount] = "Tinker's Tools";
-			toolProficiencyCount++;
-			toolProficiency[toolProficiencyCount] = "Painter's Supplies";
-			toolProficiencyCount++;
-			toolProficiency[toolProficiencyCount] = "Chess Set";
-			toolProficiencyCount++;
-		String[] features = new String[20];
-			features[0] = "Magical Tinkering";
-			features[1] = "Spellcasting (Artificer)";
-			
-			boolean isCaster = true;
-			int[] spellSlots = new int[10];
-				spellSlots[1] = 2;
-				spellSlots[9] = 1;
-			int[] spellCount = new int[10];
-			String[][] spellList = new String[10][15];
-				//add cantrips
-				spellList[0][spellCount[0]] = "Guidance";
-				spellCount[0]++;
-				spellList[0][spellCount[0]] = "Prestidigitation";
-				spellCount[0]++;
-				//add 1st level spells
-				spellList[1][spellCount[1]] = "Feather Fall";
-				spellCount[1]++;
-				spellList[1][spellCount[1]] = "Jump";
-				spellCount[1]++;
-				spellList[1][spellCount[1]] = "Purify Food and Drink";
-				spellCount[1]++;
 		
 				
 				
@@ -351,6 +474,7 @@ public class DnDCharacterCreator
 		System.out.println(sectionBreak);
 		
 		//traits and features
+		System.out.println("\tFeatures & Traits");
 		printList(features);
 		
 		//spellcasting
@@ -598,4 +722,17 @@ public class DnDCharacterCreator
 		}
 	}
 	
+	public static String setArmorProficiency(char a)
+	{
+		if (a == 'l')
+			return "Light Armor";
+		else if (a == 'm')
+			return "Light, Medium Armor, Shields";
+		else if (a == 'd')
+			return "Light, Medium Armor";
+		else if (a == 'h')
+			return "All Armor, Shields";
+		else
+			return "";
+	}
 }
