@@ -372,7 +372,8 @@ public class DnDCharacterCreator
 						scoreNames[i + 3], scores[i + 3]);
 			}
 			System.out.println("\nStandard array: 15, 14, 13, 12, 10,  8");
-			System.out.println("Choose score to receive " + standard[j]);
+			System.out.println("Choose score to receive " + standard[j]
+					+ " (i.e., \"Intelligence,\" \"int,\" or \"4\")");
 			String choice = input.next();
 			
 			if (choice.equalsIgnoreCase("strength")
