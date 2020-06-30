@@ -56,9 +56,43 @@ public class DnDCharacterCreator
 			RACES[6][1] = "Stout Halfling";
 			RACES[7][0] = "8) ";
 			RACES[7][1] = "Human";
+			
+		final String[][] LANGUAGES = new String[16][2];
+			LANGUAGES[0][0] = "1) ";
+			LANGUAGES[0][1] = "Common";
+			LANGUAGES[1][0] = "2) ";
+			LANGUAGES[1][1] = "Dwarvish";
+			LANGUAGES[2][0] = "3) ";
+			LANGUAGES[2][1] = "Elvish";
+			LANGUAGES[3][0] = "4) ";
+			LANGUAGES[3][1] = "Giant";
+			LANGUAGES[4][0] = "5) ";
+			LANGUAGES[4][1] = "Gnomish";
+			LANGUAGES[5][0] = "6) ";
+			LANGUAGES[5][1] = "Goblin";
+			LANGUAGES[6][0] = "7) ";
+			LANGUAGES[6][1] = "Halfling";
+			LANGUAGES[7][0] = "8) ";
+			LANGUAGES[7][1] = "Orc";
+			LANGUAGES[8][0] = "9) ";
+			LANGUAGES[8][1] = "Abyssal";
+			LANGUAGES[9][0] = "10) ";
+			LANGUAGES[9][1] = "Celestial";
+			LANGUAGES[10][0] = "11) ";
+			LANGUAGES[10][1] = "Deep Speech";
+			LANGUAGES[11][0] = "12) ";
+			LANGUAGES[11][1] = "Draconic";
+			LANGUAGES[12][0] = "13) ";
+			LANGUAGES[12][1] = "Infernal";
+			LANGUAGES[13][0] = "14) ";
+			LANGUAGES[13][1] = "Primordial";
+			LANGUAGES[14][0] = "15) ";
+			LANGUAGES[14][1] = "Sylvan";
+			LANGUAGES[15][0] = "16) ";
+			LANGUAGES[15][1] = "Undercommon";
 		
-		String characterName = "Sydri";
-		String characterRace = "Human";
+		String characterName = "";
+		String characterRace = "";
 		String characterClass = "Artificer";
 		int characterLevel = 1;
 		String characterBackground = "Noble";
@@ -66,9 +100,17 @@ public class DnDCharacterCreator
 		int ac = 12;
 		int hpCurrent = 8;
 		int hpMax = 8;
-		int speed = 30;
+		int speed = 0;
 		int proficiencyBonus = 2;
 		int initiativeModifier;
+		
+		
+		
+		
+		
+		System.out.println("Enter character name:");
+		characterName = input.nextLine();
+		System.out.println();
 		
 		
 		
@@ -89,22 +131,78 @@ public class DnDCharacterCreator
 		int wisModifier = getModifier(wisScore);
 		int chaModifier = getModifier(chaScore);
 		
-		
+		int languagesCount = 0;
+		String[] languages = new String[10];
 		
 		
 		
 		//choose race
-		for (int i = 0; i < RACES.length; i++)
+		while (true)
 		{
-			if (RACES[i][0] != null)
-				System.out.println(RACES[i][0] + RACES[i][1]);
-			else
+			for (int i = 0; i < RACES.length; i++)
+			{
+				if (RACES[i][0] != null)
+					System.out.println(RACES[i][0] + RACES[i][1]);
+				else
+					break;
+			}
+			System.out.println("\nSelect race:");
+			int raceChoice = input.nextInt();
+			if (raceChoice == 1)	//Hill Dwarf
+			{
+				
 				break;
+			}
+			else if (raceChoice == 2)	//Mountain Dwarf
+			{
+				
+			}
+			else if (raceChoice == 3)	//High Elf
+			{
+				
+				break;
+			}
+			else if (raceChoice == 4)	//Wood Elf
+			{
+				
+				break;
+			}
+			else if (raceChoice == 5)	//Drow
+			{
+				
+				break;
+			}
+			else if (raceChoice == 6)	//Lightfoot Halfling
+			{
+				
+				break;
+			}
+			else if (raceChoice == 7)	//Stout Halfling
+			{
+				
+				break;
+			}
+			else if (raceChoice == 8)	//Human
+			{
+				characterRace = "Human";
+				speed = 30;
+				System.out.println(
+						"As a human, you know Common and one other language.");
+				languages[languagesCount] = "Common";
+				languagesCount++;
+				languages[languagesCount] = addLanguage(LANGUAGES);
+				languagesCount++;
+				break;
+			}
+			else						//invalid input
+			{
+				System.out.println("Invalid input\n");
+				continue;
+			}
 		}
-		System.out.println("\nSelect race:");
-		int raceChoice = input.nextInt();
 		
-		
+
+			
 		
 		
 		int saveProficiencyCount = 0;
@@ -125,14 +223,6 @@ public class DnDCharacterCreator
 		String[] weaponProficiency = new String[20];
 			weaponProficiency[weaponProficiencyCount] = "Simple Weapons";
 			weaponProficiencyCount++;
-		int languagesCount = 0;
-		String[] languages = new String[10];
-			languages[languagesCount] = "Common";
-			languagesCount++;
-			languages[languagesCount] = "Halfling";
-			languagesCount++;
-			languages[languagesCount] = "Elvish";
-			languagesCount++;
 		int toolProficiencyCount = 0;
 		String[] toolProficiency = new String[10];
 			toolProficiency[toolProficiencyCount] = "Thieves' Tools";
@@ -380,7 +470,8 @@ public class DnDCharacterCreator
 						scoreNames[i + 3], scores[i + 3]);
 			}
 			System.out.println("\nStandard array: 15, 14, 13, 12, 10,  8");
-			System.out.println("Choose score to receive " + standard[j]);
+			System.out.println("Choose score to receive " + standard[j]
+					+ " (i.e., \"Intelligence,\" \"int,\" or \"4\")");
 			String choice = input.next();
 			
 			if (choice.equalsIgnoreCase("strength")
@@ -461,11 +552,41 @@ public class DnDCharacterCreator
 					continue;
 				}	
 			}
+			else
+			{
+				System.out.println("Invalid input");
+				j--;
+				continue;
+			}
 			System.out.println();
 		}
 		
 
 		return scores;
+	}
+	
+	public static String addLanguage(String[][] languages)
+	{
+		Scanner input = new Scanner(System.in);
+		
+		while (true)
+		{
+			System.out.println();
+			for (int i = 0; i < languages.length; i++)
+			{
+				System.out.println(languages[i][0] + languages [i][1]);
+			}
+			System.out.println();
+			System.out.println("\nChoose a language:");
+			int choice = input.nextInt();
+			if (choice >= 0 && choice <= languages.length)
+				return languages[choice - 1][1];
+			else
+			{
+				System.out.println("Invalid input.\n");
+				continue;
+			}
+		}
 	}
 	
 }
