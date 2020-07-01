@@ -57,6 +57,23 @@ public class DnDCharacterCreator
 			RACES[7][0] = "8) ";
 			RACES[7][1] = "Human";
 			
+		final String[][] BACKGROUNDS = new String[13][2];
+			for (int i = 0; i < BACKGROUNDS.length; i++)
+				BACKGROUNDS[i][0] = (i + 1) + ") ";
+			BACKGROUNDS[0][1] = "Acoylte";
+			BACKGROUNDS[1][1] = "Charlatan";
+			BACKGROUNDS[2][1] = "Criminal";
+			BACKGROUNDS[3][1] = "Entertainer";
+			BACKGROUNDS[4][1] = "Folk Hero";
+			BACKGROUNDS[5][1] = "Guild Artisan";
+			BACKGROUNDS[6][1] = "Hermit";
+			BACKGROUNDS[7][1] = "Noble";
+			BACKGROUNDS[8][1] = "Outlander";
+			BACKGROUNDS[9][1] = "Sage";
+			BACKGROUNDS[10][1] = "Sailor";
+			BACKGROUNDS[11][1] = "Soldier";
+			BACKGROUNDS[12][1] = "Urchin";
+			
 		final String[][] LANGUAGES = new String[16][2];
 			LANGUAGES[0][0] = "1) ";
 			LANGUAGES[0][1] = "Common";
@@ -91,6 +108,49 @@ public class DnDCharacterCreator
 			LANGUAGES[15][0] = "16) ";
 			LANGUAGES[15][1] = "Undercommon";
 			
+		final String[][] ARTISAN_TOOLS = new String[17][2];
+			for (int i = 0; i < ARTISAN_TOOLS.length; i++)
+				ARTISAN_TOOLS[i][0] = (i + 1) + ") ";
+			ARTISAN_TOOLS[0][1] = "Alchemist's Supplies";
+			ARTISAN_TOOLS[1][1] = "Brewer's Supplies";
+			ARTISAN_TOOLS[2][1] = "Calligrapher's Supplies";
+			ARTISAN_TOOLS[3][1] = "Carpenter's Tools";
+			ARTISAN_TOOLS[4][1] = "Cartographer's Tools";
+			ARTISAN_TOOLS[5][1] = "Cobbler's Tools";
+			ARTISAN_TOOLS[6][1] = "Cook's Utensils";
+			ARTISAN_TOOLS[7][1] = "Glassblower's Tools";
+			ARTISAN_TOOLS[8][1] = "Jeweler's Tools";
+			ARTISAN_TOOLS[9][1] = "Leatherworker's Tools";
+			ARTISAN_TOOLS[10][1] = "Mason's Tools";
+			ARTISAN_TOOLS[11][1] = "Painter's Supplies";
+			ARTISAN_TOOLS[12][1] = "Potter's Tools";
+			ARTISAN_TOOLS[13][1] = "Smith's Tools";
+			ARTISAN_TOOLS[14][1] = "Tinker's Tools";
+			ARTISAN_TOOLS[15][1] = "Weaver's Tools";
+			ARTISAN_TOOLS[16][1] = "Woodcarver's Tools";
+			
+		final String[][] GAMING_SETS = new String[6][2];
+			for (int i = 0; i < GAMING_SETS.length; i++)
+				GAMING_SETS[i][0] = (i + 1) + ") ";
+			GAMING_SETS[0][1] = "Dice Set";
+			GAMING_SETS[1][1] = "Dragonchess Set";
+			GAMING_SETS[2][1] = "Playing Card Set";
+			GAMING_SETS[3][1] = "Three-Dragon Ante Set";
+			
+		final String[][] INSTRUMENTS = new String[20][2];
+			for (int i = 0; i < INSTRUMENTS.length; i++)
+				INSTRUMENTS[i][0] = (i + 1) + ") ";
+			INSTRUMENTS[0][1] = "Bagpipes";
+			INSTRUMENTS[1][1] = "Drum";
+			INSTRUMENTS[2][1] = "Dulcimer";
+			INSTRUMENTS[3][1] = "Flute";
+			INSTRUMENTS[4][1] = "Lute";
+			INSTRUMENTS[5][1] = "Lyre";
+			INSTRUMENTS[6][1] = "Horn";
+			INSTRUMENTS[7][1] = "Pan Flute";
+			INSTRUMENTS[8][1] = "Shawm";
+			INSTRUMENTS[9][1] = "Viol";
+			
 		final String[][] WIZARD_SPELLS_0 = new String[16][2];
 			for (int i = 0; i < WIZARD_SPELLS_0.length; i++)
 				WIZARD_SPELLS_0[i][0] = (i + 1) + ") ";
@@ -111,6 +171,10 @@ public class DnDCharacterCreator
 			WIZARD_SPELLS_0[14][1] = "Shocking Grasp";
 			WIZARD_SPELLS_0[15][1] = "True Strike";
 		
+		
+			
+			
+			
 		String characterName = "";
 		String characterRace = "";
 		String characterClass = "";
@@ -118,11 +182,10 @@ public class DnDCharacterCreator
 		String characterBackground = "";
 		
 		int ac = 12;
-		int hpCurrent = 8;
 		int hpMax = 8;
+		int hpCurrent = hpMax;
 		int speed = 0;
 		int proficiencyBonus = 2;
-		int initiativeModifier;
 		
 		
 		System.out.println("Enter character name:");
@@ -145,6 +208,8 @@ public class DnDCharacterCreator
 		int intModifier = getModifier(intScore);
 		int wisModifier = getModifier(wisScore);
 		int chaModifier = getModifier(chaScore);
+		
+		int initiativeModifier = dexModifier;
 		
 		int languagesCount = 0;
 		String[] languages = new String[10];
@@ -177,7 +242,7 @@ public class DnDCharacterCreator
 		{
 			for (int i = 0; i < RACES.length; i++)
 			{
-				if (RACES[i][0] != null)
+				if (RACES[i][1] != null)
 					System.out.println(RACES[i][0] + RACES[i][1]);
 				else
 					break;
@@ -539,6 +604,246 @@ public class DnDCharacterCreator
 				
 				
 
+		//chose background
+		while (true)
+		{
+			for (int i = 0; i < BACKGROUNDS.length; i++)
+			{
+				if (BACKGROUNDS[i][1] != null)
+					System.out.println(BACKGROUNDS[i][0] + BACKGROUNDS[i][1]);
+				else
+					break;
+			}
+			System.out.println("\nSelect background:");
+			int backgroundChoice = input.nextInt();
+			
+			if (backgroundChoice == 1)		//acolyte
+			{
+				characterBackground = "Acolyte"; 
+				
+				skillProficiencies[6] = true;
+				skillProficiencies[14] = true;
+				
+				languages[languagesCount] = pickFromList(LANGUAGES, "language");
+				languagesCount++;
+				languages[languagesCount] = pickFromList(LANGUAGES, "language");
+				languagesCount++;
+				
+				features[featureCount] = "Shelter of the Faithful";
+				featureCount++;
+				
+				break;
+			}
+			else if (backgroundChoice == 2)	//charlatan
+			{
+				characterBackground = "Charlatan";
+				
+				skillProficiencies[4] = true;
+				skillProficiencies[15] = true;
+				
+				toolProficiency[toolProficiencyCount] = "Disguise Kit";
+				toolProficiencyCount++;
+				toolProficiency[toolProficiencyCount] = "Forgery Kit";
+				toolProficiencyCount++;
+				
+				features[featureCount] = "False Identity";
+				featureCount++;
+				
+				break;
+			}
+			else if (backgroundChoice == 3)	//criminal
+			{
+				characterBackground = "Criminal";
+				
+				skillProficiencies[4] = true;
+				skillProficiencies[16] = true;
+				
+				toolProficiency[toolProficiencyCount] = pickFromList(GAMING_SETS, "gaming set");
+				toolProficiencyCount++;
+				toolProficiency[toolProficiencyCount] = "Thieves' Tools";
+				toolProficiencyCount++;
+				
+				features[featureCount] = "Criminal Contact";
+				featureCount++;
+				
+				break;
+			}
+			else if (backgroundChoice == 4)	//entertainer
+			{
+				characterBackground = "Entertainer";
+				
+				skillProficiencies[0] = true;
+				skillProficiencies[12] = true;
+				
+				toolProficiency[toolProficiencyCount] = "Disguise Kit";
+				toolProficiencyCount++;
+				toolProficiency[toolProficiencyCount] = pickFromList(INSTRUMENTS, "musical instrument");
+				toolProficiencyCount++;
+				
+				features[featureCount] = "By Popular Demand";
+				featureCount++;
+				
+				break;
+			}
+			else if (backgroundChoice == 5)	//folk hero
+			{
+				characterBackground = "Folk Hero";
+				
+				skillProficiencies[1] = true;
+				skillProficiencies[17] = true;
+				
+				toolProficiency[toolProficiencyCount] = pickFromList(ARTISAN_TOOLS, "type of artisan's tools");
+				toolProficiencyCount++;
+				
+				features[featureCount] = "Rustic Hospitality";
+				featureCount++;
+				
+				break;
+			}
+			else if (backgroundChoice == 6)	//guild artisan
+			{
+				characterBackground = "Guild Artisan";
+				
+				skillProficiencies[6] = true;
+				skillProficiencies[13] = true;
+				
+				toolProficiency[toolProficiencyCount] = pickFromList(ARTISAN_TOOLS, "type of artisan's tools");
+				toolProficiencyCount++;
+				languages[languagesCount] = pickFromList(LANGUAGES, "language");
+				languagesCount++;
+				
+				features[featureCount] = "Guild Membership";
+				featureCount++;
+				
+				break;
+			}
+			else if (backgroundChoice == 7)	//hermit
+			{
+				characterBackground = "Hermit";
+				
+				skillProficiencies[9] = true;
+				skillProficiencies[14] = true;
+				
+				toolProficiency[toolProficiencyCount] = "Herbalism Kit";
+				toolProficiencyCount++;
+				languages[languagesCount] = pickFromList(LANGUAGES, "language");
+				languagesCount++;
+				
+				features[featureCount] = "Discovery";
+				featureCount++;
+				
+				break;
+			}
+			else if (backgroundChoice == 8)	//noble
+			{
+				characterBackground = "Noble";
+				
+				skillProficiencies[5] = true;
+				skillProficiencies[13] = true;
+				
+				toolProficiency[toolProficiencyCount] = pickFromList(GAMING_SETS, "gaming set");
+				toolProficiencyCount++;
+				
+				features[featureCount] = "Position of Privilege";
+				featureCount++;
+				
+				break;
+			}
+			else if (backgroundChoice == 9)	//outlander
+			{
+				characterBackground = "Outlander";
+				
+				skillProficiencies[3] = true;
+				skillProficiencies[17] = true;
+				
+				toolProficiency[toolProficiencyCount] = pickFromList(INSTRUMENTS, "musical instrument");
+				toolProficiencyCount++;
+				languages[languagesCount] = pickFromList(LANGUAGES, "language");
+				languagesCount++;
+				
+				features[featureCount] = "Wanderer";
+				featureCount++;
+				
+				break;
+			}
+			else if (backgroundChoice == 10) //sage
+			{
+				characterBackground = "Sage";
+				
+				skillProficiencies[2] = true;
+				skillProficiencies[5] = true;
+				
+				languages[languagesCount] = pickFromList(LANGUAGES, "language");
+				languagesCount++;
+				languages[languagesCount] = pickFromList(LANGUAGES, "language");
+				languagesCount++;
+				
+				features[featureCount] = "Researcher";
+				featureCount++;
+				
+				break;
+			}
+			else if (backgroundChoice == 11) //sailor
+			{
+				characterBackground = "Sailor";
+				
+				skillProficiencies[3] = true;
+				skillProficiencies[11] = true;
+				
+				toolProficiency[toolProficiencyCount] = "Navigator's Tools";
+				toolProficiencyCount++;
+				toolProficiency[toolProficiencyCount] = "Water Vehicles";
+				toolProficiencyCount++;
+				
+				features[featureCount] = "Ship's Passage";
+				featureCount++;
+				
+				break;
+			}
+			else if (backgroundChoice == 12) //soldier
+			{
+				characterBackground = "Soldier";
+				
+				skillProficiencies[3] = true;
+				skillProficiencies[7] = true;
+				
+				toolProficiency[toolProficiencyCount] = pickFromList(GAMING_SETS, "gaming set");
+				toolProficiencyCount++;
+				toolProficiency[toolProficiencyCount] = "Land Vehicles";
+				toolProficiencyCount++;
+				
+				features[featureCount] = "Military Rank";
+				featureCount++;
+				
+				break;
+			}
+			else if (backgroundChoice == 13) //urchin
+			{
+				characterBackground = "Urchin";
+				
+				skillProficiencies[15] = true;
+				skillProficiencies[16] = true;
+				
+				toolProficiency[toolProficiencyCount] = "Disguise Kit";
+				toolProficiencyCount++;
+				toolProficiency[toolProficiencyCount] = "Thieves' Tools";
+				toolProficiencyCount++;
+				
+				features[featureCount] = "City Secrets";
+				featureCount++;
+				
+				break;
+			}
+			else
+			{
+				System.out.println("Invalid input\n");
+				continue;
+			}
+		}
+		
+		
+		
+		
 		
 		//print character sheet
 		System.out.println();
@@ -553,11 +858,11 @@ public class DnDCharacterCreator
 		System.out.printf("AC\t%2d\n", ac);
 		System.out.printf("HP\t%2d / %d\n", hpCurrent, hpMax);
 		System.out.println("Proficiency Bonus: +" + proficiencyBonus);
-		System.out.println("Initiative: +2");
+		System.out.println("Initiative: +" + initiativeModifier);
 		System.out.println("Speed\t" + speed + " ft");
 		System.out.println(sectionBreak);
 		
-		//ability scores and modifiers, with saving throw proficiencies
+		//ability scores and modifiers
 		System.out.printf("STR %2d (%2s)%s\n", strScore,
 				modifierToString(strModifier), "");
 		System.out.printf("DEX %2d (%2s)%s\n", dexScore,
@@ -869,12 +1174,13 @@ public class DnDCharacterCreator
 			System.out.println();
 			for (int i = 0; i < list.length; i++)
 			{
-				System.out.println(list[i][0] + list [i][1]);
+				if (list[i][1] != null)
+					System.out.println(list[i][0] + list [i][1]);
 			}
 			System.out.println();
 			System.out.println("\nChoose a " + prompt + ":");
 			int choice = input.nextInt();
-			if (choice >= 0 && choice <= list.length)
+			if (choice >= 0 && choice <= list.length && list[choice][1] != null)
 				return list[choice - 1][1];
 			else
 			{
