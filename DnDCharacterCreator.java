@@ -90,6 +90,7 @@ public class DnDCharacterCreator
 			LANGUAGES[14][1] = "Sylvan";
 			LANGUAGES[15][0] = "16) ";
 			LANGUAGES[15][1] = "Undercommon";
+			
 		final String[][] WIZARD_SPELLS_0 = new String[16][2];
 			for (int i = 0; i < WIZARD_SPELLS_0.length; i++)
 				WIZARD_SPELLS_0[i][0] = (i + 1) + ") ";
@@ -112,9 +113,9 @@ public class DnDCharacterCreator
 		
 		String characterName = "";
 		String characterRace = "";
-		String characterClass = "Artificer";
+		String characterClass = "";
 		int characterLevel = 1;
-		String characterBackground = "Noble";
+		String characterBackground = "";
 		
 		int ac = 12;
 		int hpCurrent = 8;
@@ -149,56 +150,28 @@ public class DnDCharacterCreator
 		String[] languages = new String[10];
 		
 		String armorProficiency = "";
-    int weaponProficiencyCount = 0;
+		int weaponProficiencyCount = 0;
 		String[] weaponProficiency = new String[20];
 		int toolProficiencyCount = 0;
 		String[] toolProficiency = new String[10];
-			toolProficiency[toolProficiencyCount] = "Thieves' Tools";
-			toolProficiencyCount++;
-			toolProficiency[toolProficiencyCount] = "Tinker's Tools";
-			toolProficiencyCount++;
-			toolProficiency[toolProficiencyCount] = "Painter's Supplies";
-			toolProficiencyCount++;
-			toolProficiency[toolProficiencyCount] = "Chess Set";
-			toolProficiencyCount++;
-    int featureCount = 0;
+		int featureCount = 0;
 		String[] features = new String[20];
-    
-    
-    boolean isCaster = true;
+			
+			
+		boolean isCaster = false;
 		int[] spellSlots = new int[10];
-			spellSlots[1] = 2;
-			spellSlots[9] = 1;
 		int[] spellCount = new int[10];
 		String[][] spellList = new String[10][15];
-			//add cantrips
-			spellList[0][spellCount[0]] = "Guidance";
-			spellCount[0]++;
-			spellList[0][spellCount[0]] = "Prestidigitation";
-			spellCount[0]++;
-			//add 1st level spells
-			spellList[1][spellCount[1]] = "Feather Fall";
-			spellCount[1]++;
-			spellList[1][spellCount[1]] = "Jump";
-			spellCount[1]++;
-			spellList[1][spellCount[1]] = "Purify Food and Drink";
-			spellCount[1]++;
-    
+			
 		int saveProficiencyCount = 0;
 		String[] saveProficiency = new String[6];
-			saveProficiency[saveProficiencyCount] = "Constitution";
-			saveProficiencyCount++;
-			saveProficiency[saveProficiencyCount] = "Intelligence";
-			saveProficiencyCount++;
 		
 		boolean[] skillProficiencies = new boolean[18];
-			skillProficiencies[5] = true;
-			skillProficiencies[13] = true;
-			skillProficiencies[15] = true;
+			
+			
+			
+			
 		
-
-    
-    
 		//choose race
 		while (true)
 		{
