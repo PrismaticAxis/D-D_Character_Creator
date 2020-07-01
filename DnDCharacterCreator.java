@@ -150,6 +150,17 @@ public class DnDCharacterCreator
 			INSTRUMENTS[7][1] = "Pan Flute";
 			INSTRUMENTS[8][1] = "Shawm";
 			INSTRUMENTS[9][1] = "Viol";
+		
+		/*
+		 * in the interest of time, only doing Fighter, Rogue, and
+		 * Wizard for now
+		 */
+		final String[][] CLASSES = new String[13][2];
+			for (int i = 0; i < CLASSES.length; i++)
+				CLASSES[i][0] = (i + 1) + ") ";
+			CLASSES[0][1] = "Fighter";
+			CLASSES[1][1] = "Rogue";
+			CLASSES[2][1] = "Wizard";
 			
 		final String[][] WIZARD_SPELLS_0 = new String[16][2];
 			for (int i = 0; i < WIZARD_SPELLS_0.length; i++)
@@ -180,6 +191,7 @@ public class DnDCharacterCreator
 		String characterClass = "";
 		int characterLevel = 1;
 		String characterBackground = "";
+		int speed = 0;
 		
 		System.out.println("Enter character name:");
 		characterName = input.nextLine();
@@ -195,19 +207,7 @@ public class DnDCharacterCreator
 		int wisScore = scores[4];
 		int chaScore = scores[5];
 		
-		int strModifier = getModifier(strScore);
-		int dexModifier = getModifier(dexScore);
-		int conModifier = getModifier(conScore);
-		int intModifier = getModifier(intScore);
-		int wisModifier = getModifier(wisScore);
-		int chaModifier = getModifier(chaScore);
 		
-		int ac = 10 + dexModifier;
-		int hpMax = 8;
-		int hpCurrent = hpMax;
-		int speed = 0;
-		int proficiencyBonus = 2;
-		int initiativeModifier = dexModifier;
 		
 		int languagesCount = 0;
 		String[] languages = new String[10];
@@ -219,7 +219,6 @@ public class DnDCharacterCreator
 		String[] toolProficiency = new String[10];
 		int featureCount = 0;
 		String[] features = new String[20];
-			
 			
 		boolean isCaster = false;
 		String casterClass = "";
@@ -412,6 +411,8 @@ public class DnDCharacterCreator
 				//wizard cantrip
 				System.out.println("You also get a wizard cantrip (Intelligence is your spellcasting ability for it)");
 				isCaster = true;
+				spellcastingAbility = "Int";
+				spellcastingModifier = getModifier(intScore);
 				spellList[0][spellCount[0]] = pickFromList(WIZARD_SPELLS_0, "cantrip");
 				spellCount[0]++;
 				
@@ -511,7 +512,7 @@ public class DnDCharacterCreator
 				//drow magic
 				isCaster = true;
 				casterClass = "N/A";
-				spellcastingModifier = chaModifier;
+				spellcastingModifier = getModifier(chaScore);
 				spellList[0][spellCount[0]] = "Dancing Lights";
 				spellCount[0]++;
 				/*
@@ -603,7 +604,18 @@ public class DnDCharacterCreator
 			}
 		}
 		
+		int strModifier = getModifier(strScore);
+		int dexModifier = getModifier(dexScore);
+		int conModifier = getModifier(conScore);
+		int intModifier = getModifier(intScore);
+		int wisModifier = getModifier(wisScore);
+		int chaModifier = getModifier(chaScore);
 		
+		int ac = 10 + dexModifier;
+		int hpMax = 8 + conModifier;
+		int hpCurrent = hpMax;
+		int proficiencyBonus = 2;
+		int initiativeModifier = dexModifier;
 				
 				
 
@@ -838,6 +850,41 @@ public class DnDCharacterCreator
 				break;
 			}
 			else
+			{
+				System.out.println("Invalid input\n");
+				continue;
+			}
+		}
+		
+		
+		
+		
+		//choose class
+		while (true)
+		{
+			for (int i = 0; i < CLASSES.length; i++)
+			{
+				if (CLASSES[i][1] != null)
+					System.out.println(CLASSES[i][0] + CLASSES[i][1]);
+				else
+					break;
+			}
+			System.out.println("\nChoose class:");
+			int classChoice = input.nextInt();
+			
+			if (classChoice == 1)		//fighter
+			{
+				break;
+			}
+			else if (classChoice == 2)	//rogue
+			{
+				break;
+			}
+			else if (classChoice == 3)	//wizard
+			{
+				break;
+			}
+			else						//invalid input
 			{
 				System.out.println("Invalid input\n");
 				continue;
@@ -1187,7 +1234,7 @@ public class DnDCharacterCreator
 			System.out.println();
 			System.out.println("\nChoose a " + prompt + ":");
 			int choice = input.nextInt();
-			if (choice >= 0 && choice <= list.length && list[choice][1] != null)
+			if (choice >= 0 && choice <= list.length && list[choice - 1][1] != null)
 				return list[choice - 1][1];
 			else
 			{
