@@ -483,11 +483,53 @@ public class DnDCharacterCreator
 			}
 			else if (raceChoice == 6)	//Lightfoot Halfling
 			{
+				//race, speed, languages
+				characterRace = "Lightfoot Halfling";
+				speed = 25;
+				languages[languagesCount] = "Common";
+				languagesCount++;
+				languages[languagesCount] = "Halfling";
+				languagesCount++;
+				
+				//ability score increase
+				dexScore += 2;
+				chaScore++;
+				
+				//misc traits
+				features[featureCount] = "Lucky";
+				featureCount++;
+				features[featureCount] = "Brave";
+				featureCount++;
+				features[featureCount] = "Halfling Nimbleness";
+				featureCount++;
+				features[featureCount] = "Naturally Stealthy";
+				featureCount++;
 				
 				break;
 			}
 			else if (raceChoice == 7)	//Stout Halfling
 			{
+				//race, speed, languages
+				characterRace = "Stout Halfling";
+				speed = 25;
+				languages[languagesCount] = "Common";
+				languagesCount++;
+				languages[languagesCount] = "Halfling";
+				languagesCount++;
+				
+				//ability score increase
+				dexScore += 2;
+				conScore++;
+				
+				//misc traits
+				features[featureCount] = "Lucky";
+				featureCount++;
+				features[featureCount] = "Brave";
+				featureCount++;
+				features[featureCount] = "Halfling Nimbleness";
+				featureCount++;
+				features[featureCount] = "Stout Resilience";
+				featureCount++;
 				
 				break;
 			}
@@ -830,32 +872,6 @@ public class DnDCharacterCreator
 
 		return scores;
 	}
-	
-	/*
-	public static String addLanguage(String[][] languages)
-	{
-		Scanner input = new Scanner(System.in);
-		
-		while (true)
-		{
-			System.out.println();
-			for (int i = 0; i < languages.length; i++)
-			{
-				System.out.println(languages[i][0] + languages [i][1]);
-			}
-			System.out.println();
-			System.out.println("\nChoose a language:");
-			int choice = input.nextInt();
-			if (choice >= 0 && choice <= languages.length)
-				return languages[choice - 1][1];
-			else
-			{
-				System.out.println("Invalid input.\n");
-				continue;
-			}
-		}
-	}
-	*/
 	
 	public static String setArmorProficiency(char a)
 	{
