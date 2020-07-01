@@ -149,7 +149,7 @@ public class DnDCharacterCreator
 		String[] languages = new String[10];
 		
 		String armorProficiency = "";
-		int weaponProficiencyCount = 0;
+    int weaponProficiencyCount = 0;
 		String[] weaponProficiency = new String[20];
 		int toolProficiencyCount = 0;
 		String[] toolProficiency = new String[10];
@@ -161,11 +161,11 @@ public class DnDCharacterCreator
 			toolProficiencyCount++;
 			toolProficiency[toolProficiencyCount] = "Chess Set";
 			toolProficiencyCount++;
-		int featureCount = 0;
+    int featureCount = 0;
 		String[] features = new String[20];
-			
-			
-		boolean isCaster = true;
+    
+    
+    boolean isCaster = true;
 		int[] spellSlots = new int[10];
 			spellSlots[1] = 2;
 			spellSlots[9] = 1;
@@ -183,7 +183,7 @@ public class DnDCharacterCreator
 			spellCount[1]++;
 			spellList[1][spellCount[1]] = "Purify Food and Drink";
 			spellCount[1]++;
-			
+    
 		int saveProficiencyCount = 0;
 		String[] saveProficiency = new String[6];
 			saveProficiency[saveProficiencyCount] = "Constitution";
@@ -195,10 +195,10 @@ public class DnDCharacterCreator
 			skillProficiencies[5] = true;
 			skillProficiencies[13] = true;
 			skillProficiencies[15] = true;
-			
-			
-			
 		
+
+    
+    
 		//choose race
 		while (true)
 		{
