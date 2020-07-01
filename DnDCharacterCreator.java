@@ -108,6 +108,27 @@ public class DnDCharacterCreator
 			LANGUAGES[15][0] = "16) ";
 			LANGUAGES[15][1] = "Undercommon";
 			
+		final String[][] ARTISAN_TOOLS = new String[17][2];
+			for (int i = 0; i < ARTISAN_TOOLS.length; i++)
+				ARTISAN_TOOLS[i][0] = (i + 1) + ") ";
+			ARTISAN_TOOLS[0][1] = "Alchemist's Supplies";
+			ARTISAN_TOOLS[1][1] = "Brewer's Supplies";
+			ARTISAN_TOOLS[2][1] = "Calligrapher's Supplies";
+			ARTISAN_TOOLS[3][1] = "Carpenter's Tools";
+			ARTISAN_TOOLS[4][1] = "Cartographer's Tools";
+			ARTISAN_TOOLS[5][1] = "Cobbler's Tools";
+			ARTISAN_TOOLS[6][1] = "Cook's Utensils";
+			ARTISAN_TOOLS[7][1] = "Glassblower's Tools";
+			ARTISAN_TOOLS[8][1] = "Jeweler's Tools";
+			ARTISAN_TOOLS[9][1] = "Leatherworker's Tools";
+			ARTISAN_TOOLS[10][1] = "Mason's Tools";
+			ARTISAN_TOOLS[11][1] = "Painter's Supplies";
+			ARTISAN_TOOLS[12][1] = "Potter's Tools";
+			ARTISAN_TOOLS[13][1] = "Smith's Tools";
+			ARTISAN_TOOLS[14][1] = "Tinker's Tools";
+			ARTISAN_TOOLS[15][1] = "Weaver's Tools";
+			ARTISAN_TOOLS[16][1] = "Woodcarver's Tools";
+			
 		final String[][] GAMING_SETS = new String[6][2];
 			for (int i = 0; i < GAMING_SETS.length; i++)
 				GAMING_SETS[i][0] = (i + 1) + ") ";
@@ -664,40 +685,153 @@ public class DnDCharacterCreator
 				
 				break;
 			}
-			else if (backgroundChoice == 5)
+			else if (backgroundChoice == 5)	//folk hero
 			{
+				characterBackground = "Folk Hero";
+				
+				skillProficiencies[1] = true;
+				skillProficiencies[17] = true;
+				
+				toolProficiency[toolProficiencyCount] = pickFromList(ARTISAN_TOOLS, "type of artisan's tools");
+				toolProficiencyCount++;
+				
+				features[featureCount] = "Rustic Hospitality";
+				featureCount++;
+				
 				break;
 			}
-			else if (backgroundChoice == 6)
+			else if (backgroundChoice == 6)	//guild artisan
 			{
+				characterBackground = "Guild Artisan";
+				
+				skillProficiencies[6] = true;
+				skillProficiencies[13] = true;
+				
+				toolProficiency[toolProficiencyCount] = pickFromList(ARTISAN_TOOLS, "type of artisan's tools");
+				toolProficiencyCount++;
+				languages[languagesCount] = pickFromList(LANGUAGES, "language");
+				languagesCount++;
+				
+				features[featureCount] = "Guild Membership";
+				featureCount++;
+				
 				break;
 			}
-			else if (backgroundChoice == 7)
+			else if (backgroundChoice == 7)	//hermit
 			{
+				characterBackground = "Hermit";
+				
+				skillProficiencies[9] = true;
+				skillProficiencies[14] = true;
+				
+				toolProficiency[toolProficiencyCount] = "Herbalism Kit";
+				toolProficiencyCount++;
+				languages[languagesCount] = pickFromList(LANGUAGES, "language");
+				languagesCount++;
+				
+				features[featureCount] = "Discovery";
+				featureCount++;
+				
 				break;
 			}
-			else if (backgroundChoice == 8)
+			else if (backgroundChoice == 8)	//noble
 			{
+				characterBackground = "Noble";
+				
+				skillProficiencies[5] = true;
+				skillProficiencies[13] = true;
+				
+				toolProficiency[toolProficiencyCount] = pickFromList(GAMING_SETS, "gaming set");
+				toolProficiencyCount++;
+				
+				features[featureCount] = "Position of Privilege";
+				featureCount++;
+				
 				break;
 			}
-			else if (backgroundChoice == 9)
+			else if (backgroundChoice == 9)	//outlander
 			{
+				characterBackground = "Outlander";
+				
+				skillProficiencies[3] = true;
+				skillProficiencies[17] = true;
+				
+				toolProficiency[toolProficiencyCount] = pickFromList(INSTRUMENTS, "musical instrument");
+				toolProficiencyCount++;
+				languages[languagesCount] = pickFromList(LANGUAGES, "language");
+				languagesCount++;
+				
+				features[featureCount] = "Wanderer";
+				featureCount++;
+				
 				break;
 			}
-			else if (backgroundChoice == 10)
+			else if (backgroundChoice == 10) //sage
 			{
+				characterBackground = "Sage";
+				
+				skillProficiencies[2] = true;
+				skillProficiencies[5] = true;
+				
+				languages[languagesCount] = pickFromList(LANGUAGES, "language");
+				languagesCount++;
+				languages[languagesCount] = pickFromList(LANGUAGES, "language");
+				languagesCount++;
+				
+				features[featureCount] = "Researcher";
+				featureCount++;
+				
 				break;
 			}
-			else if (backgroundChoice == 11)
+			else if (backgroundChoice == 11) //sailor
 			{
+				characterBackground = "Sailor";
+				
+				skillProficiencies[3] = true;
+				skillProficiencies[11] = true;
+				
+				toolProficiency[toolProficiencyCount] = "Navigator's Tools";
+				toolProficiencyCount++;
+				toolProficiency[toolProficiencyCount] = "Water Vehicles";
+				toolProficiencyCount++;
+				
+				features[featureCount] = "Ship's Passage";
+				featureCount++;
+				
 				break;
 			}
-			else if (backgroundChoice == 12)
+			else if (backgroundChoice == 12) //soldier
 			{
+				characterBackground = "Soldier";
+				
+				skillProficiencies[3] = true;
+				skillProficiencies[7] = true;
+				
+				toolProficiency[toolProficiencyCount] = pickFromList(GAMING_SETS, "gaming set");
+				toolProficiencyCount++;
+				toolProficiency[toolProficiencyCount] = "Land Vehicles";
+				toolProficiencyCount++;
+				
+				features[featureCount] = "Military Rank";
+				featureCount++;
+				
 				break;
 			}
-			else if (backgroundChoice == 13)
+			else if (backgroundChoice == 13) //urchin
 			{
+				characterBackground = "Urchin";
+				
+				skillProficiencies[15] = true;
+				skillProficiencies[16] = true;
+				
+				toolProficiency[toolProficiencyCount] = "Disguise Kit";
+				toolProficiencyCount++;
+				toolProficiency[toolProficiencyCount] = "Thieves' Tools";
+				toolProficiencyCount++;
+				
+				features[featureCount] = "City Secrets";
+				featureCount++;
+				
 				break;
 			}
 			else
@@ -728,7 +862,7 @@ public class DnDCharacterCreator
 		System.out.println("Speed\t" + speed + " ft");
 		System.out.println(sectionBreak);
 		
-		//ability scores and modifiers, with saving throw proficiencies
+		//ability scores and modifiers
 		System.out.printf("STR %2d (%2s)%s\n", strScore,
 				modifierToString(strModifier), "");
 		System.out.printf("DEX %2d (%2s)%s\n", dexScore,
@@ -1046,7 +1180,7 @@ public class DnDCharacterCreator
 			System.out.println();
 			System.out.println("\nChoose a " + prompt + ":");
 			int choice = input.nextInt();
-			if (choice >= 0 && choice <= list.length)
+			if (choice >= 0 && choice <= list.length && list[choice][1] != null)
 				return list[choice - 1][1];
 			else
 			{
