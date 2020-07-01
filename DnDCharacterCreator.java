@@ -108,6 +108,28 @@ public class DnDCharacterCreator
 			LANGUAGES[15][0] = "16) ";
 			LANGUAGES[15][1] = "Undercommon";
 			
+		final String[][] GAMING_SETS = new String[6][2];
+			for (int i = 0; i < GAMING_SETS.length; i++)
+				GAMING_SETS[i][0] = (i + 1) + ") ";
+			GAMING_SETS[0][1] = "Dice Set";
+			GAMING_SETS[1][1] = "Dragonchess Set";
+			GAMING_SETS[2][1] = "Playing Card Set";
+			GAMING_SETS[3][1] = "Three-Dragon Ante Set";
+			
+		final String[][] INSTRUMENTS = new String[20][2];
+			for (int i = 0; i < INSTRUMENTS.length; i++)
+				INSTRUMENTS[i][0] = (i + 1) + ") ";
+			INSTRUMENTS[0][1] = "Bagpipes";
+			INSTRUMENTS[1][1] = "Drum";
+			INSTRUMENTS[2][1] = "Dulcimer";
+			INSTRUMENTS[3][1] = "Flute";
+			INSTRUMENTS[4][1] = "Lute";
+			INSTRUMENTS[5][1] = "Lyre";
+			INSTRUMENTS[6][1] = "Horn";
+			INSTRUMENTS[7][1] = "Pan Flute";
+			INSTRUMENTS[8][1] = "Shawm";
+			INSTRUMENTS[9][1] = "Viol";
+			
 		final String[][] WIZARD_SPELLS_0 = new String[16][2];
 			for (int i = 0; i < WIZARD_SPELLS_0.length; i++)
 				WIZARD_SPELLS_0[i][0] = (i + 1) + ") ";
@@ -139,11 +161,10 @@ public class DnDCharacterCreator
 		String characterBackground = "";
 		
 		int ac = 12;
-		int hpCurrent = 8;
 		int hpMax = 8;
+		int hpCurrent = hpMax;
 		int speed = 0;
 		int proficiencyBonus = 2;
-		int initiativeModifier;
 		
 		
 		System.out.println("Enter character name:");
@@ -166,6 +187,8 @@ public class DnDCharacterCreator
 		int intModifier = getModifier(intScore);
 		int wisModifier = getModifier(wisScore);
 		int chaModifier = getModifier(chaScore);
+		
+		int initiativeModifier = dexModifier;
 		
 		int languagesCount = 0;
 		String[] languages = new String[10];
@@ -198,7 +221,7 @@ public class DnDCharacterCreator
 		{
 			for (int i = 0; i < RACES.length; i++)
 			{
-				if (RACES[i][0] != null)
+				if (RACES[i][1] != null)
 					System.out.println(RACES[i][0] + RACES[i][1]);
 				else
 					break;
@@ -565,7 +588,7 @@ public class DnDCharacterCreator
 		{
 			for (int i = 0; i < BACKGROUNDS.length; i++)
 			{
-				if (BACKGROUNDS[i][0] != null)
+				if (BACKGROUNDS[i][1] != null)
 					System.out.println(BACKGROUNDS[i][0] + BACKGROUNDS[i][1]);
 				else
 					break;
@@ -592,14 +615,53 @@ public class DnDCharacterCreator
 			}
 			else if (backgroundChoice == 2)	//charlatan
 			{
+				characterBackground = "Charlatan";
+				
+				skillProficiencies[4] = true;
+				skillProficiencies[15] = true;
+				
+				toolProficiency[toolProficiencyCount] = "Disguise Kit";
+				toolProficiencyCount++;
+				toolProficiency[toolProficiencyCount] = "Forgery Kit";
+				toolProficiencyCount++;
+				
+				features[featureCount] = "False Identity";
+				featureCount++;
+				
 				break;
 			}
-			else if (backgroundChoice == 3)
+			else if (backgroundChoice == 3)	//criminal
 			{
+				characterBackground = "Criminal";
+				
+				skillProficiencies[4] = true;
+				skillProficiencies[16] = true;
+				
+				toolProficiency[toolProficiencyCount] = pickFromList(GAMING_SETS, "gaming set");
+				toolProficiencyCount++;
+				toolProficiency[toolProficiencyCount] = "Thieves' Tools";
+				toolProficiencyCount++;
+				
+				features[featureCount] = "Criminal Contact";
+				featureCount++;
+				
 				break;
 			}
-			else if (backgroundChoice == 4)
+			else if (backgroundChoice == 4)	//entertainer
 			{
+				characterBackground = "Entertainer";
+				
+				skillProficiencies[0] = true;
+				skillProficiencies[12] = true;
+				
+				toolProficiency[toolProficiencyCount] = "Disguise Kit";
+				toolProficiencyCount++;
+				toolProficiency[toolProficiencyCount] = pickFromList(INSTRUMENTS, "musical instrument");
+				toolProficiencyCount++;
+				
+				features[featureCount] = "By Popular Demand";
+				featureCount++;
+				
 				break;
 			}
 			else if (backgroundChoice == 5)
@@ -662,7 +724,7 @@ public class DnDCharacterCreator
 		System.out.printf("AC\t%2d\n", ac);
 		System.out.printf("HP\t%2d / %d\n", hpCurrent, hpMax);
 		System.out.println("Proficiency Bonus: +" + proficiencyBonus);
-		System.out.println("Initiative: +2");
+		System.out.println("Initiative: +" + initiativeModifier);
 		System.out.println("Speed\t" + speed + " ft");
 		System.out.println(sectionBreak);
 		
@@ -978,7 +1040,8 @@ public class DnDCharacterCreator
 			System.out.println();
 			for (int i = 0; i < list.length; i++)
 			{
-				System.out.println(list[i][0] + list [i][1]);
+				if (list[i][1] != null)
+					System.out.println(list[i][0] + list [i][1]);
 			}
 			System.out.println();
 			System.out.println("\nChoose a " + prompt + ":");
