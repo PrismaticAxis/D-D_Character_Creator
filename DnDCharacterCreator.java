@@ -181,13 +181,6 @@ public class DnDCharacterCreator
 		int characterLevel = 1;
 		String characterBackground = "";
 		
-		int ac = 12;
-		int hpMax = 8;
-		int hpCurrent = hpMax;
-		int speed = 0;
-		int proficiencyBonus = 2;
-		
-		
 		System.out.println("Enter character name:");
 		characterName = input.nextLine();
 		System.out.println();
@@ -209,6 +202,11 @@ public class DnDCharacterCreator
 		int wisModifier = getModifier(wisScore);
 		int chaModifier = getModifier(chaScore);
 		
+		int ac = 10 + dexModifier;
+		int hpMax = 8;
+		int hpCurrent = hpMax;
+		int speed = 0;
+		int proficiencyBonus = 2;
 		int initiativeModifier = dexModifier;
 		
 		int languagesCount = 0;
@@ -224,6 +222,9 @@ public class DnDCharacterCreator
 			
 			
 		boolean isCaster = false;
+		String casterClass = "";
+		String spellcastingAbility = "";
+		int spellcastingModifier = 0;
 		int[] spellSlots = new int[10];
 		int[] spellCount = new int[10];
 		String[][] spellList = new String[10][15];
@@ -509,6 +510,8 @@ public class DnDCharacterCreator
 				
 				//drow magic
 				isCaster = true;
+				casterClass = "N/A";
+				spellcastingModifier = chaModifier;
 				spellList[0][spellCount[0]] = "Dancing Lights";
 				spellCount[0]++;
 				/*
@@ -936,9 +939,13 @@ public class DnDCharacterCreator
 			System.out.println(sectionBreak);
 			System.out.println("\tSpellcasting\n");
 			//general
-			System.out.println("Spellcasting class/ability:\tArtificer (Int)");
-			System.out.printf("Spell save DC:\t\t\t%2d\n", 13);
-			System.out.printf("Spell attack modifier:\t\t%2s", "+5");
+			System.out.println("Spellcasting class/ability:\t" + 
+					casterClass + " (" + spellcastingAbility + ")");
+			System.out.printf("Spell save DC:\t\t\t%2d\n", 
+					(8 + proficiencyBonus + spellcastingModifier));
+			System.out.printf("Spell attack modifier:\t\t%2s",
+					modifierToString(proficiencyBonus + 
+							spellcastingModifier));
 			System.out.println("\n");
 			
 			//cantrips & at will
