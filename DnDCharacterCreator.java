@@ -56,9 +56,62 @@ public class DnDCharacterCreator
 			RACES[6][1] = "Stout Halfling";
 			RACES[7][0] = "8) ";
 			RACES[7][1] = "Human";
+			
+		final String[][] LANGUAGES = new String[16][2];
+			LANGUAGES[0][0] = "1) ";
+			LANGUAGES[0][1] = "Common";
+			LANGUAGES[1][0] = "2) ";
+			LANGUAGES[1][1] = "Dwarvish";
+			LANGUAGES[2][0] = "3) ";
+			LANGUAGES[2][1] = "Elvish";
+			LANGUAGES[3][0] = "4) ";
+			LANGUAGES[3][1] = "Giant";
+			LANGUAGES[4][0] = "5) ";
+			LANGUAGES[4][1] = "Gnomish";
+			LANGUAGES[5][0] = "6) ";
+			LANGUAGES[5][1] = "Goblin";
+			LANGUAGES[6][0] = "7) ";
+			LANGUAGES[6][1] = "Halfling";
+			LANGUAGES[7][0] = "8) ";
+			LANGUAGES[7][1] = "Orc";
+			LANGUAGES[8][0] = "9) ";
+			LANGUAGES[8][1] = "Abyssal";
+			LANGUAGES[9][0] = "10) ";
+			LANGUAGES[9][1] = "Celestial";
+			LANGUAGES[10][0] = "11) ";
+			LANGUAGES[10][1] = "Deep Speech";
+			LANGUAGES[11][0] = "12) ";
+			LANGUAGES[11][1] = "Draconic";
+			LANGUAGES[12][0] = "13) ";
+			LANGUAGES[12][1] = "Infernal";
+			LANGUAGES[13][0] = "14) ";
+			LANGUAGES[13][1] = "Primordial";
+			LANGUAGES[14][0] = "15) ";
+			LANGUAGES[14][1] = "Sylvan";
+			LANGUAGES[15][0] = "16) ";
+			LANGUAGES[15][1] = "Undercommon";
+		final String[][] WIZARD_SPELLS_0 = new String[16][2];
+			for (int i = 0; i < WIZARD_SPELLS_0.length; i++)
+				WIZARD_SPELLS_0[i][0] = (i + 1) + ") ";
+			WIZARD_SPELLS_0[0][1] = "Acid Splash";
+			WIZARD_SPELLS_0[1][1] = "Blade Ward";
+			WIZARD_SPELLS_0[2][1] = "Chill Touch";
+			WIZARD_SPELLS_0[3][1] = "Dancing Lights";
+			WIZARD_SPELLS_0[4][1] = "Fire Bolt";
+			WIZARD_SPELLS_0[5][1] = "Friends";
+			WIZARD_SPELLS_0[6][1] = "Light";
+			WIZARD_SPELLS_0[7][1] = "Mage Hand";
+			WIZARD_SPELLS_0[8][1] = "Mending";
+			WIZARD_SPELLS_0[9][1] = "Message";
+			WIZARD_SPELLS_0[10][1] = "Minor Illusion";
+			WIZARD_SPELLS_0[11][1] = "Poison Spray";
+			WIZARD_SPELLS_0[12][1] = "Prestidigitation";
+			WIZARD_SPELLS_0[13][1] = "Ray of Frost";
+			WIZARD_SPELLS_0[14][1] = "Shocking Grasp";
+			WIZARD_SPELLS_0[15][1] = "True Strike";
 		
-		String characterName;
-		String characterRace = "Human";
+		String characterName = "";
+		String characterRace = "";
 		String characterClass = "Artificer";
 		int characterLevel = 1;
 		String characterBackground = "Noble";
@@ -66,12 +119,9 @@ public class DnDCharacterCreator
 		int ac = 12;
 		int hpCurrent = 8;
 		int hpMax = 8;
-		int speed = 30;
+		int speed = 0;
 		int proficiencyBonus = 2;
 		int initiativeModifier;
-		
-		
-		
 		
 		
 		System.out.println("Enter character name:");
@@ -79,16 +129,14 @@ public class DnDCharacterCreator
 		System.out.println();
 		
 		
-		
-		
 		//generate ability scores
 		int[] scores = setAbilityScores();
-		int strScore = scores[0] + 1;
-		int dexScore = scores[1] + 1;
-		int conScore = scores[2] + 1;
-		int intScore = scores[3] + 1;
-		int wisScore = scores[4] + 1;
-		int chaScore = scores[5] + 1;
+		int strScore = scores[0];
+		int dexScore = scores[1];
+		int conScore = scores[2];
+		int intScore = scores[3];
+		int wisScore = scores[4];
+		int chaScore = scores[5];
 		
 		int strModifier = getModifier(strScore);
 		int dexModifier = getModifier(dexScore);
@@ -97,42 +145,12 @@ public class DnDCharacterCreator
 		int wisModifier = getModifier(wisScore);
 		int chaModifier = getModifier(chaScore);
 		
-		
-		
-		
-		
-		
-		
-
-			
-		
-		
-		int saveProficiencyCount = 0;
-		String[] saveProficiency = new String[6];
-			saveProficiency[saveProficiencyCount] = "Constitution";
-			saveProficiencyCount++;
-			saveProficiency[saveProficiencyCount] = "Intelligence";
-			saveProficiencyCount++;
-		
-		boolean[] skillProficiencies = new boolean[18];
-			skillProficiencies[5] = true;
-			skillProficiencies[11] = true;
-			skillProficiencies[13] = true;
-			skillProficiencies[15] = true;
-		
-		String armorProficiency = "Light, Medium Armor";
-		int weaponProficiencyCount = 0;
-		String[] weaponProficiency = new String[20];
-			weaponProficiency[weaponProficiencyCount] = "Simple Weapons";
-			weaponProficiencyCount++;
 		int languagesCount = 0;
 		String[] languages = new String[10];
-			languages[languagesCount] = "Common";
-			languagesCount++;
-			languages[languagesCount] = "Halfling";
-			languagesCount++;
-			languages[languagesCount] = "Elvish";
-			languagesCount++;
+		
+		String armorProficiency = "";
+    int weaponProficiencyCount = 0;
+		String[] weaponProficiency = new String[20];
 		int toolProficiencyCount = 0;
 		String[] toolProficiency = new String[10];
 			toolProficiency[toolProficiencyCount] = "Thieves' Tools";
@@ -143,35 +161,414 @@ public class DnDCharacterCreator
 			toolProficiencyCount++;
 			toolProficiency[toolProficiencyCount] = "Chess Set";
 			toolProficiencyCount++;
+    int featureCount = 0;
 		String[] features = new String[20];
-			features[0] = "Magical Tinkering";
-			features[1] = "Spellcasting (Artificer)";
+    
+    
+    boolean isCaster = true;
+		int[] spellSlots = new int[10];
+			spellSlots[1] = 2;
+			spellSlots[9] = 1;
+		int[] spellCount = new int[10];
+		String[][] spellList = new String[10][15];
+			//add cantrips
+			spellList[0][spellCount[0]] = "Guidance";
+			spellCount[0]++;
+			spellList[0][spellCount[0]] = "Prestidigitation";
+			spellCount[0]++;
+			//add 1st level spells
+			spellList[1][spellCount[1]] = "Feather Fall";
+			spellCount[1]++;
+			spellList[1][spellCount[1]] = "Jump";
+			spellCount[1]++;
+			spellList[1][spellCount[1]] = "Purify Food and Drink";
+			spellCount[1]++;
+    
+		int saveProficiencyCount = 0;
+		String[] saveProficiency = new String[6];
+			saveProficiency[saveProficiencyCount] = "Constitution";
+			saveProficiencyCount++;
+			saveProficiency[saveProficiencyCount] = "Intelligence";
+			saveProficiencyCount++;
+		
+		boolean[] skillProficiencies = new boolean[18];
+			skillProficiencies[5] = true;
+			skillProficiencies[13] = true;
+			skillProficiencies[15] = true;
+		
+
+    
+    
+		//choose race
+		while (true)
+		{
+			for (int i = 0; i < RACES.length; i++)
+			{
+				if (RACES[i][0] != null)
+					System.out.println(RACES[i][0] + RACES[i][1]);
+				else
+					break;
+			}
+			System.out.println("\nSelect race:");
+			int raceChoice = input.nextInt();
 			
-			boolean isCaster = true;
-			int[] spellSlots = new int[10];
-				spellSlots[1] = 2;
-				spellSlots[9] = 1;
-			int[] spellCount = new int[10];
-			String[][] spellList = new String[10][15];
-				//add cantrips
-				spellList[0][spellCount[0]] = "Guidance";
+			if (raceChoice == 1)	//Hill Dwarf
+			{
+				//race, speed, languages
+				characterRace = "Hill Dwarf";
+				speed = 25;
+				languages[languagesCount] = "Common";
+				languagesCount++;
+				languages[languagesCount] = "Dwarvish";
+				languagesCount++;
+				
+				//ability score increase
+				conScore += 2;
+				wisScore++;
+				
+				//misc traits
+				features[featureCount] = "Darkvision (60 ft)";
+				featureCount++;
+				features[featureCount] = "Dwarven Resilience";
+				featureCount++;
+				features[featureCount] = "Stonecunning";
+				featureCount++;
+				features[featureCount] = "Dwarven Toughness";
+				featureCount++;
+				
+				//misc proficiencies
+				weaponProficiency[weaponProficiencyCount] = "Battleaxe";
+				weaponProficiencyCount++;
+				weaponProficiency[weaponProficiencyCount] = "Handaxe";
+				weaponProficiencyCount++;
+				weaponProficiency[weaponProficiencyCount] = "Light Hammer";
+				weaponProficiencyCount++;
+				weaponProficiency[weaponProficiencyCount] = "Warhammer";
+				weaponProficiencyCount++;
+				
+				while (true)
+				{
+					System.out.println("1) Smith's Tools");
+					System.out.println("2) Brewer's Supplies");
+					System.out.println("3) Mason's Tools");
+					System.out.println();
+					System.out.println("Choose a tool proficiency:");
+					int choice = input.nextInt();
+					if (choice == 1)
+					{
+						toolProficiency[toolProficiencyCount] = "Smith's Tools";
+						toolProficiencyCount++;
+						break;
+					}
+					else if (choice == 2)
+					{
+						toolProficiency[toolProficiencyCount] = "Brewer's Supplies";
+						toolProficiencyCount++;
+						break;
+					}
+					else if (choice == 3)
+					{
+						toolProficiency[toolProficiencyCount] = "Mason's Tools";
+						toolProficiencyCount++;
+						break;
+					}
+					else
+					{
+						System.out.println("Invalid input\n");
+						continue;
+					}
+						
+					
+				}
+				
+				break;
+			}
+			else if (raceChoice == 2)	//Mountain Dwarf
+			{
+				//race, speed, languages
+				characterRace = "Hill Dwarf";
+				speed = 25;
+				languages[languagesCount] = "Common";
+				languagesCount++;
+				languages[languagesCount] = "Dwarvish";
+				languagesCount++;
+				
+				//ability score increase
+				conScore += 2;
+				strScore += 2;
+				
+				//misc traits
+				features[featureCount] = "Darkvision (60 ft)";
+				featureCount++;
+				features[featureCount] = "Dwarven Resilience";
+				featureCount++;
+				features[featureCount] = "Stonecunning";
+				featureCount++;
+				
+				//misc proficiencies
+				armorProficiency = setArmorProficiency('d');
+				weaponProficiency[weaponProficiencyCount] = "Battleaxe";
+				weaponProficiencyCount++;
+				weaponProficiency[weaponProficiencyCount] = "Handaxe";
+				weaponProficiencyCount++;
+				weaponProficiency[weaponProficiencyCount] = "Light Hammer";
+				weaponProficiencyCount++;
+				weaponProficiency[weaponProficiencyCount] = "Warhammer";
+				weaponProficiencyCount++;
+				while (true)
+				{
+					System.out.println("1) Smith's Tools");
+					System.out.println("2) Brewer's Supplies");
+					System.out.println("3) Mason's Tools");
+					System.out.println();
+					System.out.println("Choose a tool proficiency:");
+					int choice = input.nextInt();
+					if (choice == 1)
+					{
+						toolProficiency[toolProficiencyCount] = "Smith's Tools";
+						toolProficiencyCount++;
+						break;
+					}
+					else if (choice == 2)
+					{
+						toolProficiency[toolProficiencyCount] = "Brewer's Supplies";
+						toolProficiencyCount++;
+						break;
+					}
+					else if (choice == 3)
+					{
+						toolProficiency[toolProficiencyCount] = "Mason's Tools";
+						toolProficiencyCount++;
+						break;
+					}
+					else
+					{
+						System.out.println("Invalid input\n");
+						continue;
+					}
+						
+					
+				}
+				
+				break;
+			}
+			else if (raceChoice == 3)	//High Elf
+			{
+				//race, speed, languages
+				characterRace = "High Elf";
+				speed = 30;
+				System.out.println(
+						"As a high elf, you know Common, Elvish, and one other language.");
+				languages[languagesCount] = "Common";
+				languagesCount++;
+				languages[languagesCount] = "Elvish";
+				languagesCount++;
+				languages[languagesCount] = pickFromList(LANGUAGES, "language");
+				languagesCount++;
+				
+				//ability score increase
+				dexScore += 2;
+				intScore++;
+				
+				//wizard cantrip
+				System.out.println("You also get a wizard cantrip (Intelligence is your spellcasting ability for it)");
+				isCaster = true;
+				spellList[0][spellCount[0]] = pickFromList(WIZARD_SPELLS_0, "cantrip");
 				spellCount[0]++;
-				spellList[0][spellCount[0]] = "Prestidigitation";
+				
+				//misc traits
+				features[featureCount] = "Darkvision (60 ft)";
+				featureCount++;
+				features[featureCount] = "Fey Ancestry";
+				featureCount++;
+				features[featureCount] = "Trance";
+				featureCount++;
+				
+				//misc proficiencies
+				skillProficiencies[11] = true;
+				weaponProficiency[weaponProficiencyCount] = "Longsword";
+				weaponProficiencyCount++;
+				weaponProficiency[weaponProficiencyCount] = "Shortsword";
+				weaponProficiencyCount++;
+				weaponProficiency[weaponProficiencyCount] = "Shortbow";
+				weaponProficiencyCount++;
+				weaponProficiency[weaponProficiencyCount] = "Longbow";
+				weaponProficiencyCount++;
+				
+				break;
+			}
+			else if (raceChoice == 4)	//Wood Elf
+			{
+				//race, speed, languages
+				characterRace = "Wood Elf";
+				speed = 35;
+				languages[languagesCount] = "Common";
+				languagesCount++;
+				languages[languagesCount] = "Elvish";
+				languagesCount++;
+				
+				//ability score increase
+				dexScore += 2;
+				wisScore++;
+				
+				//misc traits
+				features[featureCount] = "Darkvision (60 ft)";
+				featureCount++;
+				features[featureCount] = "Fey Ancestry";
+				featureCount++;
+				features[featureCount] = "Trance";
+				featureCount++;
+				features[featureCount] = "Mask of the Wild";
+				featureCount++;
+				
+				//misc proficiencies
+				skillProficiencies[11] = true;
+				weaponProficiency[weaponProficiencyCount] = "Longsword";
+				weaponProficiencyCount++;
+				weaponProficiency[weaponProficiencyCount] = "Shortsword";
+				weaponProficiencyCount++;
+				weaponProficiency[weaponProficiencyCount] = "Shortbow";
+				weaponProficiencyCount++;
+				weaponProficiency[weaponProficiencyCount] = "Longbow";
+				weaponProficiencyCount++;
+				
+				break;
+			}
+			else if (raceChoice == 5)	//Drow
+			{
+				//race, speed, languages
+				characterRace = "Drow";
+				speed = 30;
+				languages[languagesCount] = "Common";
+				languagesCount++;
+				languages[languagesCount] = "Elvish";
+				languagesCount++;
+											//still not sure why drow don't
+											//get Undercommon
+				
+				//ability score increase
+				dexScore += 2;
+				chaScore++;
+				
+				//misc traits
+				features[featureCount] = "Darkvision (120 ft)";
+				featureCount++;
+				features[featureCount] = "Sunlight Sensitivity";
+				featureCount++;
+				features[featureCount] = "Fey Ancestry";
+				featureCount++;
+				features[featureCount] = "Trance";
+				featureCount++;
+				
+				//misc proficiencies
+				skillProficiencies[11] = true;
+				weaponProficiency[weaponProficiencyCount] = "Rapier";
+				weaponProficiencyCount++;
+				weaponProficiency[weaponProficiencyCount] = "Shortsword";
+				weaponProficiencyCount++;
+				weaponProficiency[weaponProficiencyCount] = "Hand Crossbow";
+				weaponProficiencyCount++;
+				
+				//drow magic
+				isCaster = true;
+				spellList[0][spellCount[0]] = "Dancing Lights";
 				spellCount[0]++;
-				//add 1st level spells
-				spellList[1][spellCount[1]] = "Feather Fall";
-				spellCount[1]++;
-				spellList[1][spellCount[1]] = "Jump";
-				spellCount[1]++;
-				spellList[1][spellCount[1]] = "Purify Food and Drink";
-				spellCount[1]++;
+				/*
+				 * there is more to this trait, but only comes into
+				 * effect at higher levels; beyond the scope of the
+				 * current project
+				 */
+				
+				break;
+			}
+			else if (raceChoice == 6)	//Lightfoot Halfling
+			{
+				//race, speed, languages
+				characterRace = "Lightfoot Halfling";
+				speed = 25;
+				languages[languagesCount] = "Common";
+				languagesCount++;
+				languages[languagesCount] = "Halfling";
+				languagesCount++;
+				
+				//ability score increase
+				dexScore += 2;
+				chaScore++;
+				
+				//misc traits
+				features[featureCount] = "Lucky";
+				featureCount++;
+				features[featureCount] = "Brave";
+				featureCount++;
+				features[featureCount] = "Halfling Nimbleness";
+				featureCount++;
+				features[featureCount] = "Naturally Stealthy";
+				featureCount++;
+				
+				break;
+			}
+			else if (raceChoice == 7)	//Stout Halfling
+			{
+				//race, speed, languages
+				characterRace = "Stout Halfling";
+				speed = 25;
+				languages[languagesCount] = "Common";
+				languagesCount++;
+				languages[languagesCount] = "Halfling";
+				languagesCount++;
+				
+				//ability score increase
+				dexScore += 2;
+				conScore++;
+				
+				//misc traits
+				features[featureCount] = "Lucky";
+				featureCount++;
+				features[featureCount] = "Brave";
+				featureCount++;
+				features[featureCount] = "Halfling Nimbleness";
+				featureCount++;
+				features[featureCount] = "Stout Resilience";
+				featureCount++;
+				
+				break;
+			}
+			else if (raceChoice == 8)	//Human
+			{
+				//race, speed, languages
+				characterRace = "Human";
+				speed = 30;
+				System.out.println(
+						"As a human, you know Common and one other language.");
+				languages[languagesCount] = "Common";
+				languagesCount++;
+				languages[languagesCount] = pickFromList(LANGUAGES, "language");
+				languagesCount++;
+				
+				//ability score increase
+				strScore++;
+				dexScore++;
+				conScore++;
+				intScore++;
+				wisScore++;
+				chaScore++;
+				
+				break;
+			}
+			else						//invalid input
+			{
+				System.out.println("Invalid input\n");
+				continue;
+			}
+		}
+		
 		
 				
 				
-				
-				
+
+		
 		//print character sheet
-				
+		System.out.println();
 		//name, race, class, level, and background
 		System.out.println(characterName);
 		System.out.println(characterRace + " " + characterClass + " "
@@ -252,6 +649,7 @@ public class DnDCharacterCreator
 		System.out.println(sectionBreak);
 		
 		//traits and features
+		System.out.println("\tFeatures & Traits");
 		printList(features);
 		
 		//spellcasting
@@ -473,6 +871,44 @@ public class DnDCharacterCreator
 		
 
 		return scores;
+	}
+	
+	public static String setArmorProficiency(char a)
+	{
+		if (a == 'l')
+			return "Light Armor";
+		else if (a == 'm')
+			return "Light, Medium Armor, Shields";
+		else if (a == 'd')
+			return "Light, Medium Armor";
+		else if (a == 'h')
+			return "All Armor, Shields";
+		else
+			return "";
+	}
+	
+	public static String pickFromList(String[][] list, String prompt)
+	{
+		Scanner input = new Scanner(System.in);
+		
+		while (true)
+		{
+			System.out.println();
+			for (int i = 0; i < list.length; i++)
+			{
+				System.out.println(list[i][0] + list [i][1]);
+			}
+			System.out.println();
+			System.out.println("\nChoose a " + prompt + ":");
+			int choice = input.nextInt();
+			if (choice >= 0 && choice <= list.length)
+				return list[choice - 1][1];
+			else
+			{
+				System.out.println("Invalid input.\n");
+				continue;
+			}
+		}
 	}
 	
 }
