@@ -57,6 +57,23 @@ public class DnDCharacterCreator
 			RACES[7][0] = "8) ";
 			RACES[7][1] = "Human";
 			
+		final String[][] BACKGROUNDS = new String[13][2];
+			for (int i = 0; i < BACKGROUNDS.length; i++)
+				BACKGROUNDS[i][0] = (i + 1) + ") ";
+			BACKGROUNDS[0][1] = "Acoylte";
+			BACKGROUNDS[1][1] = "Charlatan";
+			BACKGROUNDS[2][1] = "Criminal";
+			BACKGROUNDS[3][1] = "Entertainer";
+			BACKGROUNDS[4][1] = "Folk Hero";
+			BACKGROUNDS[5][1] = "Guild Artisan";
+			BACKGROUNDS[6][1] = "Hermit";
+			BACKGROUNDS[7][1] = "Noble";
+			BACKGROUNDS[8][1] = "Outlander";
+			BACKGROUNDS[9][1] = "Sage";
+			BACKGROUNDS[10][1] = "Sailor";
+			BACKGROUNDS[11][1] = "Soldier";
+			BACKGROUNDS[12][1] = "Urchin";
+			
 		final String[][] LANGUAGES = new String[16][2];
 			LANGUAGES[0][0] = "1) ";
 			LANGUAGES[0][1] = "Common";
@@ -111,6 +128,10 @@ public class DnDCharacterCreator
 			WIZARD_SPELLS_0[14][1] = "Shocking Grasp";
 			WIZARD_SPELLS_0[15][1] = "True Strike";
 		
+		
+			
+			
+			
 		String characterName = "";
 		String characterRace = "";
 		String characterClass = "";
@@ -539,6 +560,81 @@ public class DnDCharacterCreator
 				
 				
 
+		//chose background
+		while (true)
+		{
+			for (int i = 0; i < BACKGROUNDS.length; i++)
+			{
+				if (BACKGROUNDS[i][0] != null)
+					System.out.println(BACKGROUNDS[i][0] + BACKGROUNDS[i][1]);
+				else
+					break;
+			}
+			System.out.println("\nSelect background:");
+			int backgroundChoice = input.nextInt();
+			
+			if (backgroundChoice == 1)
+			{
+				break;
+			}
+			else if (backgroundChoice == 2)
+			{
+				break;
+			}
+			else if (backgroundChoice == 3)
+			{
+				break;
+			}
+			else if (backgroundChoice == 4)
+			{
+				break;
+			}
+			else if (backgroundChoice == 5)
+			{
+				break;
+			}
+			else if (backgroundChoice == 6)
+			{
+				break;
+			}
+			else if (backgroundChoice == 7)
+			{
+				break;
+			}
+			else if (backgroundChoice == 8)
+			{
+				break;
+			}
+			else if (backgroundChoice == 9)
+			{
+				break;
+			}
+			else if (backgroundChoice == 10)
+			{
+				break;
+			}
+			else if (backgroundChoice == 11)
+			{
+				break;
+			}
+			else if (backgroundChoice == 12)
+			{
+				break;
+			}
+			else if (backgroundChoice == 13)
+			{
+				break;
+			}
+			else
+			{
+				System.out.println("Invalid input\n");
+				continue;
+			}
+		}
+		
+		
+		
+		
 		
 		//print character sheet
 		System.out.println();
