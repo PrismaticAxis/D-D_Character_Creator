@@ -573,11 +573,24 @@ public class DnDCharacterCreator
 			System.out.println("\nSelect background:");
 			int backgroundChoice = input.nextInt();
 			
-			if (backgroundChoice == 1)
+			if (backgroundChoice == 1)		//acolyte
 			{
+				characterBackground = "Acolyte"; 
+				
+				skillProficiencies[6] = true;
+				skillProficiencies[14] = true;
+				
+				languages[languagesCount] = pickFromList(LANGUAGES, "language");
+				languagesCount++;
+				languages[languagesCount] = pickFromList(LANGUAGES, "language");
+				languagesCount++;
+				
+				features[featureCount] = "Shelter of the Faithful";
+				featureCount++;
+				
 				break;
 			}
-			else if (backgroundChoice == 2)
+			else if (backgroundChoice == 2)	//charlatan
 			{
 				break;
 			}
