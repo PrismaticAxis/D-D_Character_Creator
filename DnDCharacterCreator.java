@@ -344,7 +344,7 @@ public class DnDCharacterCreator
 				featureCount++;
 				
 				//misc proficiencies
-				armorProficiency = setArmorProficiency('d');
+				armorProficiency = setArmorProficiency(armorProficiency, 'd');
 				weaponProficiency[weaponProficiencyCount] = "Battleaxe";
 				weaponProficiencyCount++;
 				weaponProficiency[weaponProficiencyCount] = "Handaxe";
@@ -411,6 +411,7 @@ public class DnDCharacterCreator
 				//wizard cantrip
 				System.out.println("You also get a wizard cantrip (Intelligence is your spellcasting ability for it)");
 				isCaster = true;
+				casterClass = "N/A";
 				spellcastingAbility = "Int";
 				spellcastingModifier = getModifier(intScore);
 				spellList[0][spellCount[0]] = pickFromList(WIZARD_SPELLS_0, "cantrip");
@@ -1205,18 +1206,18 @@ public class DnDCharacterCreator
 		return scores;
 	}
 	
-	public static String setArmorProficiency(char a)
+	public static String setArmorProficiency(String current, char a)
 	{
-		if (a == 'l')
+		if (a == 'l' && !(current.contains("Armor")))
 			return "Light Armor";
-		else if (a == 'm')
-			return "Light, Medium Armor, Shields";
-		else if (a == 'd')
+		else if (a == 'd' && !(current.contains("Shields")))
 			return "Light, Medium Armor";
+		else if (a == 'm' && !(current.contains("All")))
+			return "Light, Medium Armor, Shields";
 		else if (a == 'h')
 			return "All Armor, Shields";
 		else
-			return "";
+			return current;
 	}
 	
 	public static String pickFromList(String[][] list, String prompt)
