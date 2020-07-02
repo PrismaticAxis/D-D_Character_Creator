@@ -613,8 +613,7 @@ public class DnDCharacterCreator
 		int chaModifier = getModifier(chaScore);
 		
 		int ac = 10 + dexModifier;
-		int hpMax = 8 + conModifier;
-		int hpCurrent = hpMax;
+		int hpMax = 0;
 		int proficiencyBonus = 2;
 		int initiativeModifier = dexModifier;
 				
@@ -875,14 +874,258 @@ public class DnDCharacterCreator
 			
 			if (classChoice == 1)		//fighter
 			{
+				characterClass = "Fighter";
+				hpMax = 10 + conModifier;
+				armorProficiency = setArmorProficiency(armorProficiency, 'h');
+				weaponProficiency[weaponProficiencyCount] = "Simple Weapons";
+				weaponProficiencyCount++;
+				weaponProficiency[weaponProficiencyCount] = "Martial Weapons";
+				weaponProficiencyCount++;
+				saveProficiency[saveProficiencyCount] = "Strength";
+				saveProficiencyCount++;
+				saveProficiency[saveProficiencyCount] = "Constitution";
+				saveProficiencyCount++;
+				
+				for (int i = 0; i < 2; i++)
+				{
+					while (true)
+					{
+						System.out.println("\n1) Acrobatics"
+								+ "\n2) Animal Handling"
+								+ "\n3) Athletics"
+								+ "\n4) History"
+								+ "\n5) Insight"
+								+ "\n6) Intimidation"
+								+ "\n7) Perception"
+								+ "\n8) Survival\n");
+						System.out.println("Choose a skill:");
+						int choice = input.nextInt();
+						
+						if (choice == 1)
+						{
+							skillProficiencies[0] = true;
+							break;
+						}
+						else if (choice == 2)
+						{
+							skillProficiencies[1] = true;
+							break;
+						}
+						else if (choice == 3)
+						{
+							skillProficiencies[3] = true;
+							break;
+						}
+						else if (choice == 4)
+						{
+							skillProficiencies[5] = true;
+							break;
+						}
+						else if (choice == 5)
+						{
+							skillProficiencies[6] = true;
+							break;
+						}
+						else if (choice == 6)
+						{
+							skillProficiencies[7] = true;
+							break;
+						}
+						else if (choice == 7)
+						{
+							skillProficiencies[11] = true;
+							break;
+						}
+						else if (choice == 8)
+						{
+							skillProficiencies[17] = true;
+							break;
+						}
+						else
+						{
+							System.out.println("Invalid input\n");
+							continue;
+						}
+					}
+				}
+				
 				break;
 			}
 			else if (classChoice == 2)	//rogue
 			{
+				characterClass = "Rogue";
+				hpMax = 8 + conModifier;
+				armorProficiency = setArmorProficiency(armorProficiency, 'l');
+				weaponProficiency[weaponProficiencyCount] = "Simple Weapons";
+				weaponProficiencyCount++;
+				weaponProficiency[weaponProficiencyCount] = "Hand Crossbow";
+				weaponProficiencyCount++;
+				weaponProficiency[weaponProficiencyCount] = "Longsword";
+				weaponProficiencyCount++;
+				weaponProficiency[weaponProficiencyCount] = "Rapier";
+				weaponProficiencyCount++;
+				weaponProficiency[weaponProficiencyCount] = "Shortsword";
+				weaponProficiencyCount++;
+				toolProficiency[toolProficiencyCount] = "Thieves' Tools";
+				toolProficiencyCount++;
+				saveProficiency[saveProficiencyCount] = "Dexterity";
+				saveProficiencyCount++;
+				saveProficiency[saveProficiencyCount] = "Intelligence";
+				saveProficiencyCount++;
+				
+				for (int i = 0; i < 4; i++)
+				{
+					while (true)
+					{
+						System.out.println("\n1) Acrobatics"
+								+ "\n2) Athletics"
+								+ "\n3) Deception"
+								+ "\n4) Insight"
+								+ "\n5) Intimidation"
+								+ "\n6) Investigation"
+								+ "\n7) Perception"
+								+ "\n8) Performance"
+								+ "\n9) Persuasion"
+								+ "\n10) Sleight of Hand"
+								+ "\n11) Stealth");
+						System.out.println("Choose a skill:");
+						int choice = input.nextInt();
+						
+						if (choice == 1)
+						{
+							skillProficiencies[0] = true;
+							break;
+						}
+						else if (choice == 2)
+						{
+							skillProficiencies[3] = true;
+							break;
+						}
+						else if (choice == 3)
+						{
+							skillProficiencies[4] = true;
+							break;
+						}
+						else if (choice == 4)
+						{
+							skillProficiencies[6] = true;
+							break;
+						}
+						else if (choice == 5)
+						{
+							skillProficiencies[7] = true;
+							break;
+						}
+						else if (choice == 6)
+						{
+							skillProficiencies[8] = true;
+							break;
+						}
+						else if (choice == 7)
+						{
+							skillProficiencies[11] = true;
+							break;
+						}
+						else if (choice == 8)
+						{
+							skillProficiencies[12] = true;
+							break;
+						}
+						else if (choice == 9)
+						{
+							skillProficiencies[13] = true;
+							break;
+						}
+						else if (choice == 10)
+						{
+							skillProficiencies[15] = true;
+							break;
+						}
+						else if (choice == 11)
+						{
+							skillProficiencies[17] = true;
+							break;
+						}
+						else
+						{
+							System.out.println("Invalid input\n");
+							continue;
+						}
+					}
+				}
+				
 				break;
 			}
 			else if (classChoice == 3)	//wizard
 			{
+				characterClass = "Wizard";
+				hpMax = 6 + conModifier;
+				weaponProficiency[weaponProficiencyCount] = "Dagger";
+				weaponProficiencyCount++;
+				weaponProficiency[weaponProficiencyCount] = "Dart";
+				weaponProficiencyCount++;
+				weaponProficiency[weaponProficiencyCount] = "Sling";
+				weaponProficiencyCount++;
+				weaponProficiency[weaponProficiencyCount] = "Quarterstaff";
+				weaponProficiencyCount++;
+				weaponProficiency[weaponProficiencyCount] = "Light Crossbow";
+				weaponProficiencyCount++;
+				saveProficiency[saveProficiencyCount] = "Intelligence";
+				saveProficiencyCount++;
+				saveProficiency[saveProficiencyCount] = "Wisdom";
+				saveProficiencyCount++;
+				
+				for (int i = 0; i < 2; i++)
+				{
+					while (true)
+					{
+						System.out.println("\n1) Arcana"
+								+ "\n2) History"
+								+ "\n3) Insight"
+								+ "\n4) Investigation"
+								+ "\n5) Medicine"
+								+ "\n6) Religion\n");
+						System.out.println("Choose a skill:");
+						int choice = input.nextInt();
+						
+						if (choice == 1)
+						{
+							skillProficiencies[2] = true;
+							break;
+						}
+						else if (choice == 2)
+						{
+							skillProficiencies[5] = true;
+							break;
+						}
+						else if (choice == 3)
+						{
+							skillProficiencies[6] = true;
+							break;
+						}
+						else if (choice == 4)
+						{
+							skillProficiencies[8] = true;
+							break;
+						}
+						else if (choice == 5)
+						{
+							skillProficiencies[9] = true;
+							break;
+						}
+						else if (choice == 6)
+						{
+							skillProficiencies[14] = true;
+							break;
+						}
+						else
+						{
+							System.out.println("Invalid input\n");
+							continue;
+						}
+					}
+				}
+				
 				break;
 			}
 			else						//invalid input
@@ -893,7 +1136,7 @@ public class DnDCharacterCreator
 		}
 		
 		
-		
+		int hpCurrent = hpMax;
 		
 		
 		//print character sheet
