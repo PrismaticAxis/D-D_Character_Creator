@@ -1,7 +1,23 @@
+package dndCharacterCreator;
 import java.util.Scanner;
 
+/**
+ * <p>Walks user through the process of making
+ * a 1st-Level character for Dungeons and Dragons (fifth edition)
+ * <br>through a series of prompts, ending by printing a
+ * character sheet with the character's information.</p>
+ * 
+ * @author Stephen Lovell
+ * <p>Last edited: 02 Jul 2020</p>
+ *
+ */
 public class DnDCharacterCreator
 {
+	/**
+	 * Primary handling of prompts and user input.
+	 * 
+	 * @param args (String[]; unused)
+	 */
 	public static void main(String[] args)
 	{
 		Scanner input = new Scanner(System.in);
@@ -181,6 +197,50 @@ public class DnDCharacterCreator
 			WIZARD_SPELLS_0[13][1] = "Ray of Frost";
 			WIZARD_SPELLS_0[14][1] = "Shocking Grasp";
 			WIZARD_SPELLS_0[15][1] = "True Strike";
+			
+		final String[][] WIZARD_SPELLS_1 = new String[30][2];
+			for (int i = 0; i < WIZARD_SPELLS_1.length; i++)
+				WIZARD_SPELLS_1[i][0] = (i + 1) + ") ";
+			WIZARD_SPELLS_1[0][1] = "Alarm";
+			WIZARD_SPELLS_1[1][1] = "Burning Hands";
+			WIZARD_SPELLS_1[2][1] = "Charm Person";
+			WIZARD_SPELLS_1[3][1] = "Chromatic Orb";
+			WIZARD_SPELLS_1[4][1] = "Color Spray";
+			WIZARD_SPELLS_1[5][1] = "Comprehend Languages";
+			WIZARD_SPELLS_1[6][1] = "Detect Magic";
+			WIZARD_SPELLS_1[7][1] = "Disguise Self";
+			WIZARD_SPELLS_1[8][1] = "Expeditious Retreat";
+			WIZARD_SPELLS_1[9][1] = "False Life";
+			WIZARD_SPELLS_1[10][1] = "Feather Fall";
+			WIZARD_SPELLS_1[11][1] = "Find Familiar";
+			WIZARD_SPELLS_1[12][1] = "Fog Cloud";
+			WIZARD_SPELLS_1[13][1] = "Grease";
+			WIZARD_SPELLS_1[14][1] = "Identify";
+			WIZARD_SPELLS_1[15][1] = "Illusory Script";
+			WIZARD_SPELLS_1[16][1] = "Jump";
+			WIZARD_SPELLS_1[17][1] = "Longstrider";
+			WIZARD_SPELLS_1[18][1] = "Mage Armor";
+			WIZARD_SPELLS_1[19][1] = "Magic Missile";
+			WIZARD_SPELLS_1[20][1] = "Protection from Evil and Good";
+			WIZARD_SPELLS_1[21][1] = "Ray of Sickness";
+			WIZARD_SPELLS_1[22][1] = "Shield";
+			WIZARD_SPELLS_1[23][1] = "Silent Image";
+			WIZARD_SPELLS_1[24][1] = "Sleep";
+			WIZARD_SPELLS_1[25][1] = "Tasha's Hideous Laughter";
+			WIZARD_SPELLS_1[26][1] = "Tenser's Floating Disk";
+			WIZARD_SPELLS_1[27][1] = "Thunderwave";
+			WIZARD_SPELLS_1[28][1] = "Unseen Servant";
+			WIZARD_SPELLS_1[29][1] = "Witch Bolt";
+			
+		final String[][] FIGHTING_STYLES_F = new String[6][2];
+			for (int i = 0; i < FIGHTING_STYLES_F.length; i++)
+				FIGHTING_STYLES_F[i][0] = (i + 1) + ") ";
+			FIGHTING_STYLES_F[0][1] = "Archery";
+			FIGHTING_STYLES_F[1][1] = "Defense";
+			FIGHTING_STYLES_F[2][1] = "Dueling";
+			FIGHTING_STYLES_F[3][1] = "Great Weapon Fighting";
+			FIGHTING_STYLES_F[4][1] = "Protection";
+			FIGHTING_STYLES_F[5][1] = "Two-Weapon Fighting";
 		
 		
 			
@@ -876,6 +936,8 @@ public class DnDCharacterCreator
 			{
 				characterClass = "Fighter";
 				hpMax = 10 + conModifier;
+				if (characterRace == "Hill Dwarf")
+					hpMax++;
 				armorProficiency = setArmorProficiency(armorProficiency, 'h');
 				weaponProficiency[weaponProficiencyCount] = "Simple Weapons";
 				weaponProficiencyCount++;
@@ -890,64 +952,49 @@ public class DnDCharacterCreator
 				{
 					while (true)
 					{
-						System.out.println("\n1) Acrobatics"
-								+ "\n2) Animal Handling"
-								+ "\n3) Athletics"
-								+ "\n4) History"
-								+ "\n5) Insight"
-								+ "\n6) Intimidation"
-								+ "\n7) Perception"
-								+ "\n8) Survival\n");
-						System.out.println("Choose a skill:");
+						System.out.println();
+						for (int j = 0; j < skillProficiencies.length; j++)
+						{
+							if (j == 0 || j == 1 || j == 3 || j == 5
+									|| j == 6 || j == 7 || j == 11
+									|| j == 17)
+							{
+								System.out.println((j + 1) + ") " + SKILLS[j]);
+							}
+						}
+						System.out.println("\nChoose a skill:");
 						int choice = input.nextInt();
 						
-						if (choice == 1)
+						if (!(skillProficiencies[choice - 1]) && choice >= 0
+								&& choice < skillProficiencies.length)
 						{
-							skillProficiencies[0] = true;
-							break;
-						}
-						else if (choice == 2)
-						{
-							skillProficiencies[1] = true;
-							break;
-						}
-						else if (choice == 3)
-						{
-							skillProficiencies[3] = true;
-							break;
-						}
-						else if (choice == 4)
-						{
-							skillProficiencies[5] = true;
-							break;
-						}
-						else if (choice == 5)
-						{
-							skillProficiencies[6] = true;
-							break;
-						}
-						else if (choice == 6)
-						{
-							skillProficiencies[7] = true;
-							break;
-						}
-						else if (choice == 7)
-						{
-							skillProficiencies[11] = true;
-							break;
-						}
-						else if (choice == 8)
-						{
-							skillProficiencies[17] = true;
-							break;
+							if (choice == 1 || choice == 2 || choice == 4
+									|| choice == 6 || choice == 7
+									|| choice == 8 || choice == 12
+									|| choice == 18)
+							{
+								skillProficiencies[choice - 1] = true;
+								break;
+							}
+							else
+							{
+								System.out.println("Invalid input\n");
+								continue;
+							}
 						}
 						else
 						{
-							System.out.println("Invalid input\n");
+							System.out.println("You already have proficiency in this skill\n");
 							continue;
 						}
 					}
 				}
+				
+				String fightingStyle = pickFromList(FIGHTING_STYLES_F, "fighting style");
+				features[featureCount] = "Fighting Style: " + fightingStyle;
+				featureCount++;
+				features[featureCount] = "Second Wind";
+				featureCount++;
 				
 				break;
 			}
@@ -955,6 +1002,8 @@ public class DnDCharacterCreator
 			{
 				characterClass = "Rogue";
 				hpMax = 8 + conModifier;
+				if (characterRace == "Hill Dwarf")
+					hpMax++;
 				armorProficiency = setArmorProficiency(armorProficiency, 'l');
 				weaponProficiency[weaponProficiencyCount] = "Simple Weapons";
 				weaponProficiencyCount++;
@@ -977,73 +1026,78 @@ public class DnDCharacterCreator
 				{
 					while (true)
 					{
-						System.out.println("\n1) Acrobatics"
-								+ "\n2) Athletics"
-								+ "\n3) Deception"
-								+ "\n4) Insight"
-								+ "\n5) Intimidation"
-								+ "\n6) Investigation"
-								+ "\n7) Perception"
-								+ "\n8) Performance"
-								+ "\n9) Persuasion"
-								+ "\n10) Sleight of Hand"
-								+ "\n11) Stealth");
-						System.out.println("Choose a skill:");
+						System.out.println();
+						for (int j = 0; j < skillProficiencies.length; j++)
+						{
+							if (j == 0 || j == 3 || j == 4 || j == 6
+									|| j == 7 || j == 8 || j == 11
+									|| j == 12 || j == 13 || j == 15
+									|| j == 16)
+							{
+								System.out.println((j + 1) + ") " + SKILLS[j]);
+							}
+						}
+						System.out.println("\nChoose a skill:");
 						int choice = input.nextInt();
 						
-						if (choice == 1)
+						if (choice >= 0 && choice < skillProficiencies.length)
 						{
-							skillProficiencies[0] = true;
+							if (!(skillProficiencies[choice - 1]))
+							{
+								if (choice == 1 || choice == 4 || choice == 5
+										|| choice == 7 || choice == 8
+										|| choice == 9 || choice == 12
+										|| choice == 13 || choice == 14
+										|| choice == 16 || choice == 17)
+								{
+									skillProficiencies[choice - 1] = true;
+									break;
+								}
+								else
+								{
+									System.out.println("Invalid input\n");
+									continue;
+								}
+							}
+							else
+							{
+								System.out.println("You already have proficiency with this skill.");
+								continue;
+							}
+						}
+						else
+						{
+							System.out.println("You already have proficiency in this skill\n");
+							continue;
+						}
+					}
+				}
+				
+				//expertise
+				for (int i = 0; i < 2; i++)
+				{
+					while (true)
+					{
+						System.out.println("\n0) Thieves' Tools");
+						for (int j = 0; j < skillProficiencies.length; j++)
+						{
+							if (skillProficiencies[j])
+								System.out.println((j + 1) + ") " + SKILLS[j]);
+						}
+						
+						System.out.println("\nChoose a skill/tool to have expertise with:");
+						int choice = input.nextInt();
+						
+						if (choice == 0)
+						{
+							features[featureCount] = "Expertise: Thieves' Tools";
+							featureCount++;
 							break;
 						}
-						else if (choice == 2)
+						else if (skillProficiencies[choice - 1])
 						{
-							skillProficiencies[3] = true;
-							break;
-						}
-						else if (choice == 3)
-						{
-							skillProficiencies[4] = true;
-							break;
-						}
-						else if (choice == 4)
-						{
-							skillProficiencies[6] = true;
-							break;
-						}
-						else if (choice == 5)
-						{
-							skillProficiencies[7] = true;
-							break;
-						}
-						else if (choice == 6)
-						{
-							skillProficiencies[8] = true;
-							break;
-						}
-						else if (choice == 7)
-						{
-							skillProficiencies[11] = true;
-							break;
-						}
-						else if (choice == 8)
-						{
-							skillProficiencies[12] = true;
-							break;
-						}
-						else if (choice == 9)
-						{
-							skillProficiencies[13] = true;
-							break;
-						}
-						else if (choice == 10)
-						{
-							skillProficiencies[15] = true;
-							break;
-						}
-						else if (choice == 11)
-						{
-							skillProficiencies[17] = true;
+							features[featureCount] = "Expertise: " + SKILLS[choice - 1];
+							featureCount++;
 							break;
 						}
 						else
@@ -1054,12 +1108,19 @@ public class DnDCharacterCreator
 					}
 				}
 				
+				features[featureCount] = "Sneak Attack (1d6)";
+				featureCount++;
+				features[featureCount] = "Thieves' Cant";
+				featureCount++;
+				
 				break;
 			}
 			else if (classChoice == 3)	//wizard
 			{
 				characterClass = "Wizard";
 				hpMax = 6 + conModifier;
+				if (characterRace == "Hill Dwarf")
+					hpMax++;
 				weaponProficiency[weaponProficiencyCount] = "Dagger";
 				weaponProficiencyCount++;
 				weaponProficiency[weaponProficiencyCount] = "Dart";
@@ -1079,44 +1140,40 @@ public class DnDCharacterCreator
 				{
 					while (true)
 					{
-						System.out.println("\n1) Arcana"
-								+ "\n2) History"
-								+ "\n3) Insight"
-								+ "\n4) Investigation"
-								+ "\n5) Medicine"
-								+ "\n6) Religion\n");
-						System.out.println("Choose a skill:");
+						System.out.println();
+						for (int j = 0; j < skillProficiencies.length; j++)
+						{
+							if (j == 2 || j == 5 || j == 6 || j == 8
+									|| j == 9 || j == 14)
+							{
+								System.out.println((j + 1) + ") " + SKILLS[j]);
+							}
+						}
+						System.out.println("\nChoose a skill:");
 						int choice = input.nextInt();
 						
-						if (choice == 1)
+						if (choice >= 0 && choice < skillProficiencies.length)
 						{
-							skillProficiencies[2] = true;
-							break;
-						}
-						else if (choice == 2)
-						{
-							skillProficiencies[5] = true;
-							break;
-						}
-						else if (choice == 3)
-						{
-							skillProficiencies[6] = true;
-							break;
-						}
-						else if (choice == 4)
-						{
-							skillProficiencies[8] = true;
-							break;
-						}
-						else if (choice == 5)
-						{
-							skillProficiencies[9] = true;
-							break;
-						}
-						else if (choice == 6)
-						{
-							skillProficiencies[14] = true;
-							break;
+							if (!(skillProficiencies[choice - 1]))
+							{
+								if (choice == 3 || choice == 6 || choice == 7
+										|| choice == 9 || choice == 10
+										|| choice == 15)
+								{
+									skillProficiencies[choice - 1] = true;
+									break;
+								}
+								else
+								{
+									System.out.println("Invalid input\n");
+									continue;
+								}
+							}
+							else
+							{
+								System.out.println("You already have proficiency with this skill.");
+								continue;
+							}
 						}
 						else
 						{
@@ -1125,6 +1182,26 @@ public class DnDCharacterCreator
 						}
 					}
 				}
+				
+				//spellcasting
+				features[featureCount] = "Spellcasting (Wizard)";
+				featureCount++;
+				isCaster = true;
+				casterClass = "Wizard";
+				spellcastingAbility = "Int";
+				spellcastingModifier = getModifier(intScore);
+				spellSlots[1] = 2;
+				for (int i = 0; i < 3; i++)
+				{
+					spellList[0][spellCount[0]] = pickFromList(WIZARD_SPELLS_0, "cantrip");
+					spellCount[0]++;
+				}
+				for (int i = 0; i < 6; i++)
+				{
+					spellList[1][spellCount[1]] = pickFromList(WIZARD_SPELLS_1, "1st level spell");
+					spellCount[1]++;
+				}
+				
 				
 				break;
 			}
@@ -1263,7 +1340,14 @@ public class DnDCharacterCreator
 		
 	}
 	
-	//returns modifier for a given ability score
+	
+	
+	/**
+	 * Returns integer modifier for a given ability score
+	 * 
+	 * @param score - the ability score to get the modifier for
+	 * @return the ability modifier
+	 */
 	public static int getModifier(int score)
 	{
 		if (score >= 10)
@@ -1277,7 +1361,12 @@ public class DnDCharacterCreator
 		}
 	}
 	
-	//returns modifier with + or - sign
+	/**
+	 * Returns modifier with + or - sign for formatting purposes.
+	 * 
+	 * @param modifier - the ability modifier to be converted
+	 * @return the ability modifier with + or - sign (or space if 0)
+	 */
 	public static String modifierToString(int modifier)
 	{
 		String modifierString = "";
@@ -1291,12 +1380,24 @@ public class DnDCharacterCreator
 		return modifierString;
 	}
 	
-	/*
-	 * returns modifier for a particular skill.
-	 * key determines the applicable ability score
+	/**
+	 * Returns modifier for a particular skill.<br><br>
+	 * (Note: method currently a bit clunky and awkward. Will clean
+	 * this up later)
 	 * 
-	 * note: this method is a bit clunky and awkward without
-	 * 		use of objects. Will clean this up later.
+	 * @param str - character's Strength score
+	 * @param dex - character's Dexterity score
+	 * @param con - character's Constitution score
+	 * @param intel - character's Intelligence score
+	 * @param wis - character's Wisdom score
+	 * @param cha - character's Charisma score
+	 * @param prof - character's proficiency bonus (as int)
+	 * @param key - the relevant ability score (1 for Strength,
+	 * 2 for Dexterity, 3 for Constitution, <br>4 for Intelligence,
+	 * 5 for Wisdom, 6 for Charisma)
+	 * @param isProf - whether character is proficient in the skill in question
+	 * @return the modifier for the skill (with + or - as appropriate),
+	 * including proficiency bonus
 	 */
 	public static String getSkillModifier(int str, int dex, int con,
 			int intel, int wis, int cha, int prof, int key, boolean isProf)
@@ -1319,6 +1420,11 @@ public class DnDCharacterCreator
 		return modifierToString(modifier);
 	}
 	
+	/**
+	 * Prints a given list.
+	 * 
+	 * @param list - the list to display
+	 */
 	public static void printList(String[] list)
 	{
 		for (int i = 0; i < list.length; i++)
@@ -1330,9 +1436,12 @@ public class DnDCharacterCreator
 		}
 	}
 	
-	/*
-	 * set ability scores; currently only supports standard array
-	 * of scores (15, 14, 13, 12, 10, 8)
+	/**
+	 * Sets the character's initial ability scores based on user input.<br>
+	 * Currently only supports generation through the standard array<br>
+	 * (15, 14, 13, 12, 10, 8)
+	 * 
+	 * @return ability scores as array
 	 */
 	public static int[] setAbilityScores()
 	{
@@ -1449,6 +1558,14 @@ public class DnDCharacterCreator
 		return scores;
 	}
 	
+	/**
+	 * Sets character's armor and shield proficiencies.
+	 * 
+	 * @param current - character's current armor/shield proficiencies as string
+	 * @param a - the proficiency level to set ('l' for light, 'm' for medium and shields,
+	 * 'h' for all armor/shields,<br>'d' for special case of Mountain Dwarves)
+	 * @return adjusted armor/shield proficiencies
+	 */
 	public static String setArmorProficiency(String current, char a)
 	{
 		if (a == 'l' && !(current.contains("Armor")))
@@ -1463,6 +1580,14 @@ public class DnDCharacterCreator
 			return current;
 	}
 	
+	/**
+	 * prompts the user to choose and item from a printed
+	 * list, then returns that item as a string.
+	 * 
+	 * @param list - the list to pick from
+	 * @param prompt - prompt displays as "Choose a ", followed by this string
+	 * @return the item the user selects
+	 */
 	public static String pickFromList(String[][] list, String prompt)
 	{
 		Scanner input = new Scanner(System.in);
