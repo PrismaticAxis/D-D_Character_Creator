@@ -965,26 +965,33 @@ public class DnDCharacterCreator
 						System.out.println("\nChoose a skill:");
 						int choice = input.nextInt();
 						
-						if (!(skillProficiencies[choice - 1]) && choice >= 0
-								&& choice < skillProficiencies.length)
+						if (choice >= 0 && choice < skillProficiencies.length)
 						{
-							if (choice == 1 || choice == 2 || choice == 4
-									|| choice == 6 || choice == 7
-									|| choice == 8 || choice == 12
-									|| choice == 18)
+							if (!(skillProficiencies[choice - 1]))
 							{
-								skillProficiencies[choice - 1] = true;
-								break;
+								if (choice == 1 || choice == 2 || choice == 4
+										|| choice == 6 || choice == 7
+										|| choice == 8 || choice == 12
+										|| choice == 18)
+								{
+									skillProficiencies[choice - 1] = true;
+									break;
+								}
+								else
+								{
+									System.out.println("Invalid input\n");
+									continue;
+								}
 							}
 							else
 							{
-								System.out.println("Invalid input\n");
+								System.out.println("You already have proficiency with this skill.");
 								continue;
 							}
 						}
 						else
 						{
-							System.out.println("You already have proficiency in this skill\n");
+							System.out.println("Invalid input\n");
 							continue;
 						}
 					}
@@ -1067,7 +1074,7 @@ public class DnDCharacterCreator
 						}
 						else
 						{
-							System.out.println("You already have proficiency in this skill\n");
+							System.out.println("Invalid input\n");
 							continue;
 						}
 					}
